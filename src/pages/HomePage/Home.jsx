@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import centeredImage from '../../assets/images/Group 4.png';
+import centeredImage from '../../assets/images/Home.png';
 import './Home.css';
 
 const BananaGame = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
-  // Function to handle the login button click
+  
   const handleLoginClick = () => {
-    // Navigate to the SignUp page
-    navigate('/signup'); // Use the route defined in your App component
+    
+    navigate('/login'); 
   };
 
   return (
@@ -21,7 +21,7 @@ const BananaGame = () => {
 
       {/* Button inside the container */}
       <div className="button-container">
-        <button id="loginButton" onClick={handleLoginClick}>
+        <button className='loginbtn' id="loginButton" onClick={handleLoginClick}>
           Login
         </button>
       </div>

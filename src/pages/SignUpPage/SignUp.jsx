@@ -1,55 +1,105 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { FaLock, FaUser } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import centeredImage from '../../assets/images/Group 6.png';
 import './SignUp.css';
 
 const SignUp = () => {
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
 
-    axios.post("http://localhost:3000/api/signup", {
-      username,
-      email,
-      password
-    })
-    .then(res => {
-      if(res.data.status){
-        navigate('/login');
+    // Validate form fields
+    if (!username || !email || !password) {
+      setError('All fields are required.');
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/signup", {
+        username,
+        email,
+        password
+      });
+      console.log('User signed up:', response.data);
+
+      // Check for success status from the backend
+      if (response.data.status) {
+        setSuccess('Sign-up successful! Redirecting to login...');
+        // Redirect to login page after 2 seconds
+        setTimeout(() => navigate('/login'), 2000);
+      } else {
+        setError('Sign-up failed. Please try again.');
       }
-    })
-    .catch(err => {
-      console.log(err);
-    })
-
-  }
+    } catch (error) {
+      setError('An error occurred during sign up. Please try again.');
+      console.error(error);
+    }
+  };
 
   return (
-    <div className="signup-form-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)}/>
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email"onChange={(e) => setEmail(e.target.value)}/>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="center-image-overlay">
+      <img src={centeredImage} alt="Background" />
+
+      <div className='wrapper'>
+        <form onSubmit={handleSubmit}>
+          <h1>Sign Up</h1>
+          
+          {error && <p className="error-message">{error}</p>}
+          {success && <p className="success-message">{success}</p>}
+          
+          <div className='input-box'>
+            <input 
+              type='text' 
+              placeholder='Username' 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
+              required 
+            />
+            <FaUser className='icon'/>
+          </div>
+          
+          <div className='input-box'>
+            <input 
+              type='email' 
+              placeholder='Email' 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+            <MdEmail className='icon'/>
+          </div>
+          
+          <div className='input-box'>
+            <input 
+              type='password' 
+              placeholder='Password' 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+            <FaLock className='icon'/>
+          </div>
+
+          <button className='loginbtn2' type='submit'>Sign Up</button>
+          
+          <div className='register-link'>
+            <p>Already have an account? <a href='./login'>Login</a></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default SignUp;

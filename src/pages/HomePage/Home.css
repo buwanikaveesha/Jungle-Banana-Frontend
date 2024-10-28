@@ -16,7 +16,7 @@ align-items: center;
 height: 100vh;
 width: 100vw; 
 position: relative;  
-border: 2px solid red;                   
+                 
 }
 .center-image-section img {
 height: auto;                      
@@ -34,7 +34,7 @@ z-index: 0;
 }
 
 /* Style the button */
-button {
+.loginbtn {
     padding: 10px 20px;
     font-size: 16px;
     background: linear-gradient(45deg, #F4A034, #8E5D1E);
@@ -50,6 +50,6 @@ button {
 }
 
 /* Hover effect for the button */
-button:hover {
+.loginbtn:hover {
     background: linear-gradient(45deg, #8E5D1E, #F4A034);
 }
