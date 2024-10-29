@@ -113,8 +113,10 @@
 }
 
 .error-message {
-    color: red;
-    margin-top: 10px; 
-    font-size: 0.9em;
+    color: rgb(229, 80, 80);
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
-}
+  }
+  
