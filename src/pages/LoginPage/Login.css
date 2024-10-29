@@ -111,3 +111,10 @@
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px; /* Adjust spacing under the heading */
+    font-size: 0.9em;
+    text-align: center;
+}

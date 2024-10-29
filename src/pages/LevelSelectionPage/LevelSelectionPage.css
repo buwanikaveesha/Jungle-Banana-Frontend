@@ -1,0 +1,50 @@
+/* Full-page background */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* To prevent scrolling if image fills viewport */
+}
+
+.center-image-overlay {
+    position: fixed;              /* Stays in place while scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;                   /* Ensure overlay is above background */
+}
+
+.center-image-overlay img {
+    max-width: 80vw;              /* Adjust size as needed */
+    max-height: 80vh;
+    opacity: 0.5;                 /* Make it semi-transparent for readability */
+    pointer-events: none;         /* Ensures it doesn't interfere with clicks */
+}
+
+/* Level selection container */
+.level-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;  
+    margin-top: 200px;                 /* Above the overlay image */
+}
+
+.title {
+    font-size: 3em;
+    color: #ffb800;
+    text-shadow: 2px 2px #063f23;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.level-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
