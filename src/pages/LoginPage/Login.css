@@ -65,7 +65,7 @@
 }
 
 .remember-forgot label {
-    color: #fff; /* Set text color to white */
+    color: #fff; 
 }
 
 .remember-forgot label input {
@@ -114,7 +114,7 @@
 
 .error-message {
     color: red;
-    margin-top: 10px; /* Adjust spacing under the heading */
+    margin-top: 10px; 
     font-size: 0.9em;
     text-align: center;
 }

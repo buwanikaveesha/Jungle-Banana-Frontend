@@ -5,18 +5,18 @@ import centeredImage from '../../assets/images/Group 5.png';
 import './Login.css';
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleLogin = (e) => {
     e.preventDefault(); 
-    navigate('/levelSelection'); // Redirect to the LevelSelectionPage
+    navigate('/levelSelection'); 
   };
 
   return (
     <div className="center-image-overlay">
       <img src={centeredImage} alt="Background" />
       <div className='wrapper'>
-        <form onSubmit={handleLogin}> {/* Use onSubmit instead of action */}
+        <form onSubmit={handleLogin}> {}
           <h1>Login</h1>
           <div className='input-box1'>
             <input type='text' placeholder='Username' required />
