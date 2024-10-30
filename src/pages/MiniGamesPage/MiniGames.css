@@ -1,0 +1,84 @@
+.mini-games-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    padding: 20px;
+  }
+  
+  .title {
+    color: #ff9900;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-family: 'Comic Sans MS', cursive;
+    margin-top: 50px;
+  }
+  
+  .games {
+    display: flex;
+    gap: 100px;
+    
+  }
+  
+  .game-card {
+    background-color: #34495e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 80px;
+  }
+  
+  .game-card h2{
+    color: white;
+  }
+
+  .game-preview {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .candy-crush .candy-background {
+    width: 100%;
+    height: 150px; /* Adjust height as needed */
+    background-image: url('../../assets/images/candy-crush.jpg'); /* Ensure path is correct */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .memory-card .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+  
+  .memory-item {
+    width: 40px;
+    height: 40px;
+    background-color: #2ecc71;
+    border-radius: 5px;
+  }
+  
+  .start-button2 {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .start-button:hover {
+    background-color: #bdc3c7;
+  }
+  

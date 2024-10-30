@@ -20,6 +20,7 @@ const LevelSelectionPage = () => {
             {/* Level selection interface */}
             <div className="level-page">
                 <h1 className="title">Choose a Level</h1>
+                <br></br>
                 <div className="level-buttons">
                     {levels.map(level => (
                         <LevelButton key={level.number} time={level.time} number={level.number} />

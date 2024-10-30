@@ -32,19 +32,21 @@ body, html {
     justify-content: center;
     position: relative;
     z-index: 2;  
-    margin-top: 200px;                 
+    margin-top: 100px;                 
 }
 
 .title {
-    font-size: 3em;
-    color: #ffb800;
-    text-shadow: 2px 2px #063f23;
-    margin-bottom: 2rem;
-    text-align: center;
+    color: #ff9900;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-family: 'Comic Sans MS', cursive;
+    margin-top: 50px;
 }
 
 .level-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
     justify-content: center;
+    height: 200px;
+   
 }

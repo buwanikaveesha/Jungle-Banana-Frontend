@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Candy from './pages/CandyCrushPage/Candy'; // Adjust the path based on your file structure
 import Home from './pages/HomePage/Home';
+import Leaderboard from './pages/LeaderboardPage/Leaderboard';
 import LevelSelectionPage from './pages/LevelSelectionPage/LevelSelectionPage';
 import Login from './pages/LoginPage/Login';
+import MiniGames from './pages/MiniGamesPage/MiniGames';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SignUp from './pages/SignUpPage/SignUp';
-
 
 const App = () => {
   return (
@@ -14,8 +15,10 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/candy' element={<Candy/>}/>
         <Route path='/levelSelection' element={<LevelSelectionPage/>}/>
+        <Route path='/miniGames' element={<MiniGames/>}/>
+        <Route path='/profile' element={<ProfilePage/>}/>
+        <Route path='/leaderboard' element={<Leaderboard/>}/>
       </Routes>
     </BrowserRouter>
   );
