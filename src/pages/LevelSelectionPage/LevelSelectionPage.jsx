@@ -1,5 +1,4 @@
 import React from 'react';
-import centeredImage from '../../assets/images/Group 7.png';
 import LevelButton from './LevelButton';
 import './LevelSelectionPage.css';
 
@@ -12,11 +11,6 @@ const LevelSelectionPage = () => {
 
     return (
         <>
-            {/* Overlay image positioned in the center */}
-            <div className="center-image-overlay">
-                <img src={centeredImage} alt="Overlay" />
-            </div>
-            
             {/* Level selection interface */}
             <div className="level-page">
                 <h1 className="title">Choose a Level</h1>

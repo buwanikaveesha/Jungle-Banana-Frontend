@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { FaLock, FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import centeredImage from '../../assets/images/Group 6.png';
 import './SignUp.css';
 
 const SignUp = () => {
@@ -48,8 +47,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="center-image-overlay">
-      <img src={centeredImage} alt="Background" />
+    
+      
 
       <div className='wrapper'>
         <form onSubmit={handleSubmit}>
@@ -98,7 +97,6 @@ const SignUp = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
 

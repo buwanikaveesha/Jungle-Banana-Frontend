@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import centeredImage from '../../assets/images/Group 5.png';
 import './Login.css';
 
 const Login = () => {
@@ -40,8 +39,6 @@ const Login = () => {
   };
 
   return (
-    <div className="center-image-overlay">
-      <img src={centeredImage} alt="Background" />
       <div className='wrapper'>
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
@@ -79,7 +76,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
 

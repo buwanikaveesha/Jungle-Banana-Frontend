@@ -98,18 +98,18 @@
   text-decoration: underline;
 }
 /* Overlay image styling */
-.center-image-overlay {
+/*.center-image-overlay {
   display: flex;                    
   justify-content: center;           
   align-items: center;
   height: 100vh;
   width: 100vw;
   position: absolute;  /* Use absolute positioning for the overlay */
-  z-index: 0; 
+ /* z-index: 0; 
 }
 
 /* Centered Image within Overlay */
-.center-image-overlay img {
+/*.center-image-overlay img {
   height: auto;                      
   max-height: 100vh;                 
   max-width: 100vw;
