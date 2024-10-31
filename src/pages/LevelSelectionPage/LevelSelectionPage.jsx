@@ -1,4 +1,5 @@
 import React from 'react';
+import SlideMenuBar from '../../components/NavBar/NavBar';
 import LevelButton from './LevelButton';
 import './LevelSelectionPage.css';
 
@@ -11,6 +12,8 @@ const LevelSelectionPage = () => {
 
     return (
         <>
+        <div>
+        <SlideMenuBar /> {/* Add SlideMenuBar here */}
             {/* Level selection interface */}
             <div className="level-page">
                 <h1 className="title">Choose a Level</h1>
@@ -20,6 +23,7 @@ const LevelSelectionPage = () => {
                         <LevelButton key={level.number} time={level.time} number={level.number} />
                     ))}
                 </div>
+            </div>
             </div>
         </>
     );

@@ -1,8 +1,10 @@
 import React from 'react';
+import SlideMenuBar from '../../components/NavBar/NavBar';
 import './MiniGames.css';
 
 const MiniGames = () => {
   return (
+    <div><SlideMenuBar /> {/* Add SlideMenuBar here */}
     <div className="mini-games-container">
       <h1 className="title">MINI GAMES</h1>
       <div className="games">
@@ -30,6 +32,7 @@ const MiniGames = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

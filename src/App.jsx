@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
 import Home from './pages/HomePage/Home';
 import Leaderboard from './pages/LeaderboardPage/Leaderboard';
 import LevelSelectionPage from './pages/LevelSelectionPage/LevelSelectionPage';
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/miniGames' element={<MiniGames/>}/>
         <Route path='/profile' element={<ProfilePage/>}/>
         <Route path='/leaderboard' element={<Leaderboard/>}/>
+        <Route path='/navBar' element={<NavBar/>}/>
       </Routes>
     </BrowserRouter>
   );
