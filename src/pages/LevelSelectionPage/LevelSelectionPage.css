@@ -43,10 +43,4 @@ body, html {
     margin-top: 50px;
 }
 
-.level-buttons {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    height: 200px;
-   
-}
+

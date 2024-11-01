@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Candy from './components/CandyCrushGame/Candy';
+import EasyMode from './components/EasyMode/EasyMode';
+import HardMode from './components/HardMode/HardMode';
+import MediumMode from './components/MediumMode/MediumMode';
 import MemoryCardGame from './components/MemoryCardGame/MemoryCard';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/HomePage/Home';
@@ -25,6 +28,9 @@ const App = () => {
         <Route path='/navBar' element={<NavBar/>}/>
         <Route path='/memoryCardGame' element={<MemoryCardGame/>}/>
         <Route path='/candy' element={<Candy/>}/>
+        <Route path='/level/easy' element={<EasyMode/>}/>
+        <Route path='/level/medium' element={<MediumMode/>}/>
+        <Route path='/level/hard' element={<HardMode/>}/>
       </Routes>
     </BrowserRouter>
   );

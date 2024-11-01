@@ -1,0 +1,26 @@
+.level-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+.level-btn3 {
+    padding: 10px;
+    background-color: yellow;
+    color: black;
+   
+}
