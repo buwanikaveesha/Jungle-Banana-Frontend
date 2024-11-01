@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import ClockBtn from "../../assets/images/clock.png";
+import QuitBtn from "../../assets/images/logout.png";
 import RestartBtn from "../../assets/images/restart-btn.png";
 import { GameContext } from '../../context/GameContextProvider';
 
 const SideBar = () => {
 
-    const { timeLeft, restartGame } = useContext(GameContext);
+    const { timeLeft, restartGame, quitGame } = useContext(GameContext);
 
   return (
     <div className=" absolute right-36 md:-right-52 -bottom-[7.5rem] md:bottom-32 flex flex-col items-start gap-1">
@@ -25,6 +26,10 @@ const SideBar = () => {
         <button onClick={restartGame} className="flex items-center gap-3">
           <img src={RestartBtn} alt="" className=" w-8 h-8 md:w-10 md:h-10" />
           <p className=" text-amber-900 md:text-lg font-bold">Replay</p>
+        </button>
+        <button onClick={quitGame} className="flex items-center gap-3">
+          <img src={QuitBtn} alt="" className=" w-8 h-8 md:w-10 md:h-10" />
+          <p className=" text-amber-900 md:text-lg font-bold">Quit</p>
         </button>
       </div>
     </div>
