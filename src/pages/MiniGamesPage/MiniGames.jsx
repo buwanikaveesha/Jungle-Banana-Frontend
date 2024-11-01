@@ -8,7 +8,7 @@ const MiniGames = () => {
 
   // Handlers to navigate to each game page
   const handleCandyCrushStart = () => {
-    navigate('/candyCrush'); // Adjust route to your actual route
+    navigate('/Candy'); // Adjust route to your actual route
   };
 
   const handleMemoryCardStart = () => {

@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-      <div className='wrapper'>
+      <div className='wrapper1'>
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -65,7 +65,7 @@ const Login = () => {
             />
             <FaLock className='icon'/>
           </div>
-          <div className='remember-forgot'>
+          <div className='remember-forgot1'>
             <label><input type='checkbox'/>Remember me</label>
             <a href='#'>Forgot password</a>
           </div>
