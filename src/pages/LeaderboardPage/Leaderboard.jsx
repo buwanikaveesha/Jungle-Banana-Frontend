@@ -1,5 +1,5 @@
 import React from 'react';
-import SlideMenuBar from '../../components/NavBar/NavBar'; // Adjust the path if necessary
+import SlideMenuBar from '../../components/NavBar/NavBar';
 import './Leaderboard.css';
 
 const Leaderboard = () => {
@@ -13,7 +13,7 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <SlideMenuBar /> {/* Add SlideMenuBar here */}
+      <SlideMenuBar /> {/* Add SlideMenuBar */}
       <br></br>
       <div>
       <h1 className="leaderboard-title">LEADERBOARD</h1>

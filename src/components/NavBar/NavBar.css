@@ -5,20 +5,20 @@
     font-size: 24px;
     cursor: pointer;
     z-index: 1001;
-    background-color: #333; /* Circle background color */
-    color: white; /* Icon color */
-    border-radius: 50%; /* Makes it a circle */
-    padding: 10px; /* Adds space around the icon to make it circular */
-    width: 45px; /* Ensures a consistent circular shape */
-    height: 45px; /* Ensures a consistent circular shape */
+    background-color: #333; 
+    color: white; 
+    border-radius: 50%; 
+    padding: 10px; 
+    width: 45px; 
+    height: 45px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   }
   
   .menu-icon:hover {
-    background-color: #555; /* Change color on hover for better visibility */
+    background-color: #555; 
   }
   
   

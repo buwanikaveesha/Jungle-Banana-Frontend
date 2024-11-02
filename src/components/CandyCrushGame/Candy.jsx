@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import background from '../../assets/images/background.jpg'; // Adjust the path as necessary
+import background from '../../assets/images/background.jpg';
 import blank from '../../assets/images/blank.png';
 import blueCandy from '../../assets/images/blue-candy.png';
 import greenCandy from '../../assets/images/green-candy.png';
@@ -325,8 +325,8 @@ const Candy = () => {
     };
 
     const handleQuit = () => {
-        // Navigate to the miniGames page, for example, using useNavigate from react-router-dom
-        window.location.href = './miniGames'; // Or use a navigate function from react-router
+        // Navigate to the miniGames page
+        window.location.href = './miniGames'; 
     };
 
     return (

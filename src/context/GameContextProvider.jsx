@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 // Import fruit images
 import apple from "../assets/images/fruits/apple.png";
@@ -14,7 +14,7 @@ import watermelon from "../assets/images/fruits/watermelon.png";
 export const GameContext = createContext();
 
 const GameContextProvider = ({ children }) => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState([]);
@@ -123,7 +123,7 @@ const GameContextProvider = ({ children }) => {
         gameOver,
         gameWon,
         restartGame,
-        quitGame, // Include quitGame in context
+        quitGame, 
         score,
       }}
     >

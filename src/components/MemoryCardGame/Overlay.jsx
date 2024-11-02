@@ -13,7 +13,7 @@ const Overlay = () => {
   if (!gameOver && !gameWon) return null;
 
   const handleQuit = () => {
-    navigate("/miniGames"); // Redirects to the miniGames page
+    navigate("/miniGames"); 
   };
 
   return (

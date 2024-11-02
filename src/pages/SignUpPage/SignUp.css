@@ -1,4 +1,4 @@
-/* Entire sign-up page with full viewport height and background color */
+
 .signup-page {
   position: relative;
   height: 100vh;
@@ -97,44 +97,21 @@
 .register-link p a:hover {
   text-decoration: underline;
 }
-/* Overlay image styling */
-/*.center-image-overlay {
-  display: flex;                    
-  justify-content: center;           
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;  /* Use absolute positioning for the overlay */
- /* z-index: 0; 
-}
 
-/* Centered Image within Overlay */
-/*.center-image-overlay img {
-  height: auto;                      
-  max-height: 100vh;                 
-  max-width: 100vw;
-  opacity: 0.3; 
-}
-
-/* Form container styling */
 .signup-form-container {
   position: relative;
-  z-index: 1; /* Place form above overlay image */
+  z-index: 1; 
   max-width: 300px;
   max-height: 400px;
   width: 100%;
   padding: 2rem;
-  background-color: #ffffff; /* White background for form */
+  background-color: #ffffff; 
   border: 2px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-top: 100px;
   backdrop-filter: blur(15px);
 }
-
-/*h2 {
-  color: #333;
-}*/
 
 .form-group {
   margin-bottom: 1.5rem;

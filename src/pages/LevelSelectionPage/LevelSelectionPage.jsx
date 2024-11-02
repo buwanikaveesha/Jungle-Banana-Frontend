@@ -18,7 +18,7 @@ const LevelSelectionPage = () => {
     return (
         <>
         <div>
-        <SlideMenuBar /> {/* Add SlideMenuBar here */}
+        <SlideMenuBar /> {/* Add SlideMenuBar */}
             {/* Level selection interface */}
             
                 <h1 className="title-levelselection">CHOOSE A LEVEL</h1>

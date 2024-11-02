@@ -1,4 +1,3 @@
-/* Full-page background */
 body, html {
     margin: 0;
     padding: 0;
@@ -28,8 +27,8 @@ body, html {
 /* Level selection container */
 .level-page {
     display: flex;
-    flex-direction: column; /* Change to column to stack title above cards */
-    align-items: center; /* Centers the title and cards horizontally */
+    flex-direction: column; 
+    align-items: center; 
     padding: 20px; 
     margin-top: 60px; 
 }
@@ -46,13 +45,13 @@ body, html {
 /* Level card container */
 .level-card-container {
     display: flex;
-    justify-content: center; /* Centers the LevelCards horizontally */
-    align-items: center; /* Aligns the LevelCards vertically */
-    gap: 50px; /* Adds spacing between LevelCards */
-    flex-wrap: wrap; /* Allows cards to wrap if there's not enough space */
+    justify-content: center; 
+    align-items: center; 
+    gap: 50px; 
+    flex-wrap: wrap; 
 }
 
-/* Optional: Add hover effect for the card container */
+
 .level-card-container:hover {
-    background-color: transparent; /* Lightens background on hover */
+    background-color: transparent; 
 }

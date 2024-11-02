@@ -17,7 +17,7 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:3000/api/login', {
-        email, // Assuming you're using email as the identifier
+        email, 
         password,
       });
 
@@ -48,8 +48,8 @@ const Login = () => {
               type='text' 
               name="username" 
               placeholder='Email' 
-              value={email} // Controlled input
-              onChange={(e) => setEmail(e.target.value)} // Update state on change
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
               required 
             />
             <FaUser className='icon'/>
@@ -59,8 +59,8 @@ const Login = () => {
               type='password' 
               name="password" 
               placeholder='Password' 
-              value={password} // Controlled input
-              onChange={(e) => setPassword(e.target.value)} // Update state on change
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
               required 
             />
             <FaLock className='icon'/>

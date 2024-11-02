@@ -113,7 +113,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Ensure it appears above everything else */
+    z-index: 1000; 
 }
 
 .message {
@@ -131,7 +131,7 @@
     font-size: 1rem;
     cursor: pointer;
     border: none;
-    background-color: #28a745; /* Green background for buttons */
+    background-color: #28a745; 
     color: white;
     border-radius: 5px;
 }
