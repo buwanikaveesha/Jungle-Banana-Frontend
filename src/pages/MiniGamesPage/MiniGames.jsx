@@ -19,7 +19,7 @@ const MiniGames = () => {
     <div>
       <SlideMenuBar />
       <div className="mini-games-container">
-        <h1 className="title">MINI GAMES</h1>
+        <h1 className="title-minigame">MINI GAMES</h1>
         <div className="games">
           {/* Candy Crush Section */}
           <div className="game-card">

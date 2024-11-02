@@ -17,9 +17,11 @@ const LevelSelectionPage = () => {
         <div>
         <SlideMenuBar /> {/* Add SlideMenuBar here */}
             {/* Level selection interface */}
-            <div className="level-page">
-                <h1 className="title">Choose a Level</h1>
+            
+                <h1 className="title-levelselection">CHOOSE A LEVEL</h1>
                 <br></br>
+                <div className="level-page">
+                <div className='level-card-container'>
                 <LevelCard 
                     time = "15 Seconds"
                     title = "Easy"
@@ -40,7 +42,7 @@ const LevelSelectionPage = () => {
                     btnLevel = "Start"
                     onStart={() => handleLevel('hard')}
                 />
-
+            </div>
             </div>
             </div>
         </>

@@ -5,6 +5,7 @@ body, html {
     overflow: hidden; 
 }
 
+/* Center image overlay */
 .center-image-overlay {
     position: fixed;              
     top: 0;
@@ -27,20 +28,31 @@ body, html {
 /* Level selection container */
 .level-page {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;  
-    margin-top: 100px;                 
+    flex-direction: column; /* Change to column to stack title above cards */
+    align-items: center; /* Centers the title and cards horizontally */
+    padding: 20px; 
+    margin-top: 60px; 
 }
 
-.title {
+.title-levelselection {
     color: #ff9900;
     font-size: 2.5rem;
     margin-bottom: 20px;
     font-family: 'Comic Sans MS', cursive;
-    margin-top: 50px;
+    margin-top: 70px;
+    margin-left: 600px;
 }
 
+/* Level card container */
+.level-card-container {
+    display: flex;
+    justify-content: center; /* Centers the LevelCards horizontally */
+    align-items: center; /* Aligns the LevelCards vertically */
+    gap: 50px; /* Adds spacing between LevelCards */
+    flex-wrap: wrap; /* Allows cards to wrap if there's not enough space */
+}
 
+/* Optional: Add hover effect for the card container */
+.level-card-container:hover {
+    background-color: transparent; /* Lightens background on hover */
+}

@@ -1,55 +1,117 @@
 body {
     background-image: linear-gradient(314deg, #51713a 0%, #000e21 74%);
-    background-size: contain;
+    background-size: cover;
     background-position: center;      
     background-repeat: no-repeat;     
     background-attachment: fixed;
     margin: 0;
     padding: 0;                      
     overflow: hidden;                 
+    font-family: 'Comic Sans MS', cursive, sans-serif; 
+    color: #fff; 
+}
+
+.game-container {
+    position: relative; 
+    height: 100vh; 
+}
+
+.fancy-circle {
+    position: absolute;
+    top: 50%; 
+    left: 30%; 
+    width: 600px; 
+    height: 600px; 
+    border-radius: 50%; 
+    background: rgba(255, 215, 0, 0.5); 
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); 
+    transform: translate(-50%, -50%);
+    z-index: 0; 
+    animation: pulse 2s infinite; /* Pulse animation */
+}
+
+/* Pulse animation for the fancy circle */
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05); 
+    }
 }
 
 .center-image-section {
-display: flex;                    
-justify-content: center;           
-align-items: center;
-height: 100vh;
-width: 100vw; 
-position: relative;  
-                 
+    display: flex;                    
+    align-items: center;
+    height: 100vh;
+    width: 100vw; 
+    position: relative;  
+    z-index: 1;
+    margin-left: 160px;
 }
-.center-image-section img {
-height: auto;                      
-max-height: 100vh;                 
-max-width: 100vw;
-z-index: 0;
+
+.centered-image {
+    height: auto;                      
+    max-height: 400px;                 
+    max-width: 600px;
+}
+
+.home-text-container {
+    text-align: center; 
+    margin: 20px; 
+    position: absolute; 
+    right: 20px; 
+    top: 20%; 
+    z-index: 2; 
+    width: 600px;
+    line-height: 2px;
+}
+
+.game-title {
+    font-size: 36px; 
+    margin: 20px 0; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.game-description {
+    font-size: 24px; 
+    margin-top: 30px; 
+    line-height: 1.8; 
+    opacity: 0.9; 
+    color: #fff; 
+    
+    
 }
 
 .button-container {
     position: absolute; 
-    top: 50%;  
-    left: 50%;
+    top: 55%; 
+    left: 78%;
     transform: translate(-50%, -50%);  
-    z-index: 1;  
+    z-index: 2; 
+   
 }
 
-/* Style the button */
 .loginbtn {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px; 
+    font-size: 20px; 
     background: linear-gradient(45deg, #F4A034, #8E5D1E);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px; 
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 1;  
+    transition: transform 0.2s ease, background-color 0.3s ease; 
     position: relative; 
-    margin-left: 1280px;
-    margin-bottom: 40%; 
+    margin-top: 130px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 100px;
+    height: 50px;
 }
 
-/* Hover effect for the button */
 .loginbtn:hover {
     background: linear-gradient(45deg, #8E5D1E, #F4A034);
+    transform: scale(1.05); 
 }

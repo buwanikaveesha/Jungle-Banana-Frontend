@@ -1,26 +1,56 @@
+/* LevelSelectionPage.css */
+.level-selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* LevelCard.css */
+.level-card-container {
+    display: flex;
+}
+
 .level-card {
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
     width: 200px;
-    margin: 10px;
     text-align: center;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .level-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-
-
-
+.level-card p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 1rem;
+}
 
 .level-btn3 {
-    padding: 10px;
-    background-color: yellow;
-    color: black;
-   
+    padding: 10px 16px;
+    background-color: #eea81c;
+    color: #333;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100px;
+}
+
+.level-btn3:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.level-btn3:active {
+    background-color: #e6b800;
 }

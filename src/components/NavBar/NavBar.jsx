@@ -22,6 +22,7 @@ const SlideMenuBar = () => {
         
         <ul>
           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/levelselection" onClick={toggleMenu}>Banana Game</Link></li>
           <li><Link to="/miniGames" onClick={toggleMenu}>Mini Games</Link></li>
           <li><Link to="/leaderboard" onClick={toggleMenu}>Leaderboard</Link></li>
           <li><Link to="/profile" onClick={toggleMenu}>Profile</Link></li>
