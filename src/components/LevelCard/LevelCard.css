@@ -14,24 +14,36 @@
 }
 
 .level-card {
-    background-color: #ffffff;
+    background-color: #34495e;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     padding: 16px;
     width: 200px;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+   
+}
+
+.level-icon {
+    width: 70px; /* Set the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px 0;
+    margin-left: 50px;
 }
 
 .level-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .level-card p {
     margin: 8px 0;
-    color: #333;
-    font-size: 1rem;
+    color: #f6f6f6;
+    font-size: 1.5rem;
+}
+
+.level-card h2{
+    font-size: 18px;
 }
 
 .level-btn3 {

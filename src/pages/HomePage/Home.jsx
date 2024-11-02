@@ -20,15 +20,7 @@ const BananaGame = () => {
         <img src={centeredImage} alt="Centered Image" className="centered-image" />
       </section>
 
-      {/*Description*/}
-      <div className="home-text-container">
-        <p className="game-description">
-          Embark on a wild adventure in the jungle filled with <br></br>bananas, challenges, and fun!
-          <br></br>Get ready to explore the mysterious <br></br> jungle and conquer exciting levels.<br></br>
-          Join us now and unleash your inner explorer!
-        </p>
-      </div>
-
+      
         {/* Button inside the container */}
         <div className="button-container">
           <button className='loginbtn' id="loginButton" onClick={handleLoginClick}>

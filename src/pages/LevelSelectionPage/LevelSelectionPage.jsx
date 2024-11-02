@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import easyImage from '../../assets/images/easyMonkey.png';
+import hardImage from '../../assets/images/hardMonkey.png';
+import mediumImage from '../../assets/images/mediumMonkey.png';
 import LevelCard from '../../components/LevelCard/LevelCard';
 import SlideMenuBar from '../../components/NavBar/NavBar';
 import './LevelSelectionPage.css';
@@ -26,13 +29,16 @@ const LevelSelectionPage = () => {
                     time = "15 Seconds"
                     title = "Easy"
                     btnLevel = "Start"
+                    image={easyImage}
                     onStart={() => handleLevel('easy')}
+                    
                 />
 
                 <LevelCard 
                     time = "10 Seconds"
-                    title = "Mediam"
+                    title = "Medium"
                     btnLevel = "Start"
+                    image={mediumImage}
                     onStart={() => handleLevel('medium')}
                 />
 
@@ -40,6 +46,7 @@ const LevelSelectionPage = () => {
                     time = "8 Seconds"
                     title = "Hard"
                     btnLevel = "Start"
+                    image={hardImage}
                     onStart={() => handleLevel('hard')}
                 />
             </div>
