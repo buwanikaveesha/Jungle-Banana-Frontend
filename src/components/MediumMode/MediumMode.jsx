@@ -28,8 +28,8 @@ function MediumMode() {
 
 
   return (
-    <div  className="container-easy">
-      <img src={question} alt="banana-game" />
+    <div  className="container-medium">
+      <img className="medium-img" src={question} alt="banana-game" />
       <h5>Answer is: {solution}</h5>
     </div>
   )
