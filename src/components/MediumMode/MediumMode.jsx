@@ -97,7 +97,7 @@ function MediumMode() {
         <p>Score: {score}</p>
         
       </div>
-      <img className="medium-img" src={question} alt="banana-game-medium" />
+      <img className="medium-img-game" src={question} alt="banana-game-medium" />
       <h5 className="medium-game-answer">Answer is: {solution}</h5>
       <div className="buttons-container-medium">
         {Array.from({ length: 10 }, (_, index) => (

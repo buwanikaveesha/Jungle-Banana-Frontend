@@ -1,35 +1,37 @@
 .container-medium {
     text-align: center;
+    
+  }
+  
+.timer-round-medium{
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Stack the items vertically */
+  align-items: center;
+  margin-top: 40px;
+  
 }
 
-.timer-round-medium {
-    font-size: 18px;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column; /* Stack the items vertically */
-    align-items: center;
-}
-
-.medium-img {
-    width: 600px;
+.medium-img-game {
+    width: 700px;
     height: auto;
-    margin-bottom: 20px;
-}
-
+  }
+  
 .medium-game-answer {
     margin: 10px 0;
     font-size: 24px;
-}
-
-.buttons-container-medium {
+  }
+  
+  .buttons-container-medium {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
-}
-
-.number-button-medium {
+  }
+  
+  .number-button-medium {
     width: 40px;
     height: 40px;
     font-size: 1em;
@@ -40,36 +42,36 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.number-button-medium:hover {
+  }
+  
+  .number-button-medium:hover {
     background-color: #8E5D1E;
-}
-
-.number-button-medium.selected {
+  }
+  
+  .number-button-medium.selected {
     background-color: #2196F3;
-}
-
-.result {
+  }
+  
+  .result {
     margin-top: 10px;
     font-size: 1.2em;
     font-weight: bold;
     margin-right: 10px;
     height: 30px;
-}
-
-.correct {
+  }
+  
+  .correct {
     color: rgb(224, 227, 232);
     font-size: 24px;
     margin-top: 5px;
-}
-
-.incorrect {
+  }
+  
+  .incorrect {
     color: red;
     font-size: 24px;
-}
-
-.overlay-medium-game {
+  }
+  
+  .overlay-medium-game {
     position: fixed;
     top: 0;
     left: 0;
@@ -80,18 +82,19 @@
     justify-content: center;
     align-items: center;
     color: #fff;
-}
-
-.overlay-content-medium-game {
+  }
+  
+  .overlay-content-medium-game {
     text-align: center;
     background-color: #333;
     padding: 20px;
     border-radius: 10px;
     font-size: 24px;
     color: #F4A034;
-}
-
-.overlay-content-medium-game button {
+    
+  }
+  
+  .overlay-content-medium-game button {
     margin: 10px;
     padding: 10px 20px;
     cursor: pointer;
@@ -102,15 +105,17 @@
     font-size: 20px; /* Font size */
     transition: background-color 0.3s ease, transform 0.2s; /* Transition effects */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Add hover effects */
-.overlay-content-medium-game button:hover {
+  }
+  
+  /* Add hover effects */
+  .overlay-content-medium-game button:hover {
     background-color: #45a049; /* Darker green on hover */
     transform: translateY(-2px); /* Slight lift on hover */
-}
-
-/* Add active effect */
-.overlay-content-medium-game button:active {
+  }
+  
+  /* Add active effect */
+  .overlay-content-mediumgame button:active {
     transform: translateY(0); /* Reset position when clicked */
-}
+  }
+  
+  
