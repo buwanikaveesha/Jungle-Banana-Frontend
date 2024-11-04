@@ -9,7 +9,7 @@ const EasyMode = () => {
   const [solution, setSolution] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(120);
   const [round, setRound] = useState(1);
   const [score, setScore] = useState(0);
   const [correctRounds, setCorrectRounds] = useState(0);
@@ -75,7 +75,7 @@ const EasyMode = () => {
     clearInterval(timerInterval);
 
     // Reset state for a new game
-    setTimer(60);
+    setTimer(120);
     setRound(1);
     setScore(0);
     setCorrectRounds(0);
@@ -95,9 +95,9 @@ const EasyMode = () => {
         <p>Timer: {timer}s</p>
         <p>Round: {round}</p>
         <p>Score: {score}</p>
-        <h5 className="easy-game-answer">Answer is: {solution}</h5>
       </div>
-      <img className="easy-img" src={question} alt="banana-game" />
+      <img className="easy-img" src={question} alt="banana-game-easy" />
+      <h5 className="easy-game-answer">Answer is: {solution}</h5>
       <div className="buttons-container-easy">
         {Array.from({ length: 10 }, (_, index) => (
           <button

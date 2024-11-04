@@ -1,9 +1,3 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
-}
-
 /* Center image overlay */
 .center-image-overlay {
     position: fixed;              

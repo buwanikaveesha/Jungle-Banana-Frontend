@@ -11,7 +11,7 @@ const BananaGame = () => {
   };
 
   return (
-    <div className="game-container">
+    <div className="game-container-home">
       {/* Fancy animated circle */}
       <div className="fancy-circle"></div>
 
