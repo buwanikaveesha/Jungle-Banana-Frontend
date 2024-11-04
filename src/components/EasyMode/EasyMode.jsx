@@ -56,7 +56,7 @@ const EasyMode = () => {
     const correct = number === solution;
     setIsCorrect(correct);
     if (correct) {
-      setScore((prevScore) => prevScore + 1);
+      setScore((prevScore) => prevScore + 5);
       setCorrectRounds((prevCorrectRounds) => prevCorrectRounds + 1);
     }
 

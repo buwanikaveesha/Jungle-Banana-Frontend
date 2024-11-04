@@ -56,7 +56,7 @@ function MediumMode() {
     const correct = number === solution;
     setIsCorrect(correct);
     if (correct) {
-      setScore((prevScore) => prevScore + 2);
+      setScore((prevScore) => prevScore + 10);
       setCorrectRounds((prevCorrectRounds) => prevCorrectRounds + 1);
     }
 
