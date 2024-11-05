@@ -30,9 +30,9 @@ const EasyMode = () => {
 
   useEffect(() => {
     fetchData();
-    startTimer(); // Start the timer when the component mounts
+    startTimer(); 
 
-    return () => clearInterval(timerInterval); // Clear timer on unmount
+    return () => clearInterval(timerInterval); 
   }, []);
 
   const startTimer = () => {
@@ -41,7 +41,7 @@ const EasyMode = () => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
           clearInterval(interval);
-          setShowOverlay(true); // Show the overlay when time is up
+          setShowOverlay(true); 
           return 0;
         }
         return prevTimer - 1;
@@ -79,7 +79,7 @@ const EasyMode = () => {
     setRound(1);
     setScore(0);
     setCorrectRounds(0);
-    setTotalRounds(0); // Fixed the stray character here
+    setTotalRounds(0); 
     setShowOverlay(false);
     fetchData(); 
     startTimer(); 

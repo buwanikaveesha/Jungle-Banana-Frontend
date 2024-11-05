@@ -27,13 +27,14 @@
     margin-top: 60px; 
 }
 
-.title-levelselection {
+.title-level-selection {
     color: #ff9900;
     font-size: 2.5rem;
     margin-bottom: 20px;
     font-family: 'Comic Sans MS', cursive;
     margin-top: 70px;
     margin-left: 600px;
+    
 }
 
 /* Level card container */
