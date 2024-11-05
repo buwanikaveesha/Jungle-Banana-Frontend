@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './HardMode.css';
@@ -16,7 +16,7 @@ function HardMode() {
   const [correctRounds, setCorrectRounds] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [timerInterval, setTimerInterval] = useState(null); // Store the timer interval ID
+  const timerInterval = useRef(null);
 
   const fetchData = async () => {
     try {
@@ -33,23 +33,21 @@ function HardMode() {
     fetchData();
     startTimer(); // Start the timer when the component mounts
 
-    return () => clearInterval(timerInterval); // Clear timer on unmount
+    return () => clearInterval(timerInterval.current); // Clear timer on unmount
   }, []);
 
   const startTimer = () => {
-    clearInterval(timerInterval); // Clear any existing interval before starting a new one
-    const interval = setInterval(() => {
+    clearInterval(timerInterval.current); // Clear any existing interval before starting a new one
+    timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
-          clearInterval(interval);
-          setShowOverlay(true); // Show the overlay when time is up
+          clearInterval(timerInterval.current);
+          setShowOverlay(true);
           return 0;
         }
         return prevTimer - 1;
       });
     }, 1000);
-
-    setTimerInterval(interval); // Save the timer interval ID
   };
 
   const handleAnswerClick = (number) => {
@@ -62,32 +60,33 @@ function HardMode() {
     }
 
     // Proceed to next round
-    setTotalRounds((prevTotalRounds) => prevTotalRounds + 1); 
+    setTotalRounds((prevTotalRounds) => prevTotalRounds + 1);
     setTimeout(() => {
       setRound((prevRound) => prevRound + 1);
       setSelectedAnswer(null);
       setIsCorrect(null);
       fetchData();
-    }, 1000); 
+    }, 1000);
   };
 
   const handleRestart = () => {
     // Clear existing timer interval
-    clearInterval(timerInterval);
+    clearInterval(timerInterval.current);
 
     // Reset state for a new game
     setTimer(15);
     setRound(1);
     setScore(0);
     setCorrectRounds(0);
-    setTotalRounds(0); // Fixed the stray character here
+    setTotalRounds(0);
     setShowOverlay(false);
-    fetchData(); 
-    startTimer(); 
+    fetchData();
+    startTimer();
   };
 
   const handleQuit = () => {
-    navigate('/levelselection'); 
+    clearInterval(timerInterval.current); // Clear timer when quitting
+    navigate('/levelselection');
   };
 
   return (
@@ -129,6 +128,6 @@ function HardMode() {
       )}
     </div>
   );
-};
+}
 
 export default HardMode;

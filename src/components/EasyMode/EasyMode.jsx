@@ -1,13 +1,17 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 import './EasyMode.css';
 
 const EasyMode = () => {
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  let { level } = useParams();
+
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
   const [timer, setTimer] = useState(120);
   const [round, setRound] = useState(1);
@@ -15,7 +19,7 @@ const EasyMode = () => {
   const [correctRounds, setCorrectRounds] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [timerInterval, setTimerInterval] = useState(null); // Store the timer interval ID
+  const timerInterval = useRef(null);
 
   const fetchData = async () => {
     try {
@@ -23,70 +27,85 @@ const EasyMode = () => {
       const { question, solution } = response.data;
       setQuestion(question);
       setSolution(solution);
+      console.log('Solution:', solution);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching question:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
-    startTimer(); 
+    startTimer();
 
-    return () => clearInterval(timerInterval); 
+    return () => clearInterval(timerInterval.current);
   }, []);
 
   const startTimer = () => {
-    clearInterval(timerInterval); // Clear any existing interval before starting a new one
-    const interval = setInterval(() => {
+    clearInterval(timerInterval.current);
+    timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
-          clearInterval(interval);
-          setShowOverlay(true); 
+          clearInterval(timerInterval.current);
+          setShowOverlay(true);
           return 0;
         }
         return prevTimer - 1;
       });
     }, 1000);
-
-    setTimerInterval(interval); // Save the timer interval ID
   };
 
-  const handleAnswerClick = (number) => {
-    setSelectedAnswer(number);
-    const correct = number === solution;
-    setIsCorrect(correct);
-    if (correct) {
-      setScore((prevScore) => prevScore + 5);
-      setCorrectRounds((prevCorrectRounds) => prevCorrectRounds + 1);
-    }
+  const handleScoreCalculate = async (isAnswerCorrect) => {
+  if (isAnswerCorrect) {
+      const point = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
+      const updatedScore = score + point;
 
-    // Proceed to next round
-    setTotalRounds((prevTotalRounds) => prevTotalRounds + 1); 
-    setTimeout(() => {
-      setRound((prevRound) => prevRound + 1);
-      setSelectedAnswer(null);
-      setIsCorrect(null);
-      fetchData();
-    }, 1000); 
+      try {
+          const response = await axios.put("http://localhost:3000/api/score", {
+              score: point,
+              level
+          }, {
+              headers: { 'Authorization': `Bearer ${token}` } 
+              
+          });
+
+          if (response.status === 200) {
+              setScore(updatedScore);
+              setCorrectRounds((prev) => prev + 1);
+              fetchData();
+          } else {
+              console.log('Error updating score');
+          }
+      } catch (error) {
+          console.log("Error during score update:", error);
+      }
+  }
+  setTotalRounds((prev) => prev + 1);
+  setSelectedAnswer('');
+};
+
+
+  const handleAnswerClick = (answer) => {
+    setSelectedAnswer(answer);
+    const isAnswerCorrect = answer === solution;
+    setIsCorrect(isAnswerCorrect);
+    handleScoreCalculate(isAnswerCorrect);
   };
 
   const handleRestart = () => {
-    // Clear existing timer interval
-    clearInterval(timerInterval);
-
-    // Reset state for a new game
+    clearInterval(timerInterval.current);
     setTimer(120);
     setRound(1);
     setScore(0);
     setCorrectRounds(0);
-    setTotalRounds(0); 
+    setTotalRounds(0);
     setShowOverlay(false);
-    fetchData(); 
-    startTimer(); 
+    fetchData();
+    startTimer();
   };
 
   const handleQuit = () => {
-    navigate('/levelselection'); 
+    clearInterval(timerInterval.current);
+    navigate('/levelselection');
   };
 
   return (
@@ -96,8 +115,9 @@ const EasyMode = () => {
         <p>Round: {round}</p>
         <p>Score: {score}</p>
       </div>
-      <img className="easy-img" src={question} alt="banana-game-easy" />
-      <h5 className="easy-game-answer">Answer is: {solution}</h5>
+      <div className='easy-image-text'>
+        <img className="easy-img" src={question} alt="banana-game-easy" />
+      </div>
       <div className="buttons-container-easy">
         {Array.from({ length: 10 }, (_, index) => (
           <button
@@ -114,7 +134,7 @@ const EasyMode = () => {
           {isCorrect ? "Correct!" : "Incorrect!"}
         </div>
       )}
-      
+
       {showOverlay && (
         <div className="overlay-easy-game">
           <div className="overlay-content-easy-game">

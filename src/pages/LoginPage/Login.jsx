@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
   const [errorMessage, setErrorMessage] = useState('');
+  const { login } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,17 +24,16 @@ const Login = () => {
       });
 
       if (response.data.status) {
+        login(response.data.token);
         navigate('/levelSelection'); 
       } else {
         setErrorMessage('Incorrect Username or Password. Try again!');
-        // Clear input fields when the credentials are incorrect
         setEmail('');
         setPassword('');
       }
     } catch (error) {
       console.error(error);
       setErrorMessage('An error occurred while logging in. Please try again later.');
-      // Clear input fields on error
       setEmail('');
       setPassword('');
     }

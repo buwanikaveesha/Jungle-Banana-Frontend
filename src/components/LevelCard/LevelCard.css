@@ -24,11 +24,12 @@
    
 }
 
-.level-icon {
+.card-image-button .level-icon {
     width: 70px; 
     height: auto; 
     margin: 10px 0;
     margin-left: 50px;
+    
 }
 
 .level-card:hover {

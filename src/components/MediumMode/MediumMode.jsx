@@ -15,7 +15,13 @@ function MediumMode() {
   const [correctRounds, setCorrectRounds] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [timerInterval, setTimerInterval] = useState(null); // Store the timer interval ID
+
+  useEffect(() => {
+    fetchData();
+    startTimer(); // Start the timer when the component mounts
+
+    return () => clearInterval(timerInterval.current); // Clear timer on unmount
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -28,27 +34,20 @@ function MediumMode() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    startTimer(); // Start the timer when the component mounts
-
-    return () => clearInterval(timerInterval); // Clear timer on unmount
-  }, []);
+  const timerInterval = React.useRef(null);
 
   const startTimer = () => {
-    clearInterval(timerInterval); // Clear any existing interval before starting a new one
-    const interval = setInterval(() => {
+    clearInterval(timerInterval.current); // Clear any existing interval before starting a new one
+    timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
-          clearInterval(interval);
+          clearInterval(timerInterval.current);
           setShowOverlay(true); // Show the overlay when time is up
           return 0;
         }
         return prevTimer - 1;
       });
     }, 1000);
-
-    setTimerInterval(interval); // Save the timer interval ID
   };
 
   const handleAnswerClick = (number) => {
@@ -71,21 +70,21 @@ function MediumMode() {
   };
 
   const handleRestart = () => {
-    // Clear existing timer interval
-    clearInterval(timerInterval);
+    clearInterval(timerInterval.current); // Clear existing timer interval
 
     // Reset state for a new game
     setTimer(60);
     setRound(1);
     setScore(0);
     setCorrectRounds(0);
-    setTotalRounds(0); // Fixed the stray character here
+    setTotalRounds(0);
     setShowOverlay(false);
     fetchData(); 
     startTimer(); 
   };
 
   const handleQuit = () => {
+    clearInterval(timerInterval.current); // Clear timer when quitting
     navigate('/levelselection'); 
   };
 
@@ -95,7 +94,6 @@ function MediumMode() {
         <p>Timer: {timer}s</p>
         <p>Round: {round}</p>
         <p>Score: {score}</p>
-        
       </div>
       <img className="medium-img-game" src={question} alt="banana-game-medium" />
       <h5 className="medium-game-answer">Answer is: {solution}</h5>
@@ -129,6 +127,6 @@ function MediumMode() {
       )}
     </div>
   );
-};
+}
 
 export default MediumMode;

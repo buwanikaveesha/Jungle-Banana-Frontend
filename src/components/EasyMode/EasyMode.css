@@ -7,13 +7,13 @@
   font-size: 20px;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Stack the items vertically */
+  flex-direction: column;
   align-items: center;
   margin-top: 40px;
   
 }
 
-.easy-img {
+.easy-image-text .easy-img {
     width: 700px;
     height: auto;
   }
@@ -98,24 +98,24 @@
     margin: 10px;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #4CAF50; /* Green background */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    color: white; /* White text */
-    font-size: 20px; /* Font size */
-    transition: background-color 0.3s ease, transform 0.2s; /* Transition effects */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  /* Add hover effects */
+  
   .overlay-content-easy-game button:hover {
-    background-color: #45a049; /* Darker green on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    background-color: #45a049;
+    transform: translateY(-2px);
   }
   
-  /* Add active effect */
+  
   .overlay-content-easygame button:active {
-    transform: translateY(0); /* Reset position when clicked */
+    transform: translateY(0);
   }
   
   
