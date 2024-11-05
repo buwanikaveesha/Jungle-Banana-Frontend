@@ -13,9 +13,16 @@
   
 }
 
+.load-medium-game{
+  display: flex;
+  justify-content: center;
+} 
+
 .medium-img-game {
-    width: 700px;
-    height: auto;
+  width: 700px;
+  height: auto;
+  margin: 0 auto;
+    
   }
   
 .medium-game-answer {

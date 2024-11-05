@@ -13,10 +13,16 @@
   
 }
 
-.hard-img {
-    width: 700px;
-    height: auto;
-  }
+.load-hard-game{
+  display: flex;
+  justify-content: center;
+} 
+
+.hard-img-game {
+  width: 700px;
+  height: auto;
+  margin: 0 auto; 
+}
   
 .hard-game-answer {
     margin: 10px 0;

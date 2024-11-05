@@ -112,12 +112,12 @@ const EasyMode = () => {
     <div className="container-easy">
       <div className="timer-round-easy">
         <p>Timer: {timer}s</p>
-        <p>Round: {round}</p>
         <p>Score: {score}</p>
       </div>
-      <div className='easy-image-text'>
-        <img className="easy-img" src={question} alt="banana-game-easy" />
+      <div className='load-easy-game'>
+        <img className="easy-img-game" src={question} alt="banana-game-easy" />
       </div>
+      <h5 className="medium-game-answer">Answer is: {solution}</h5>
       <div className="buttons-container-easy">
         {Array.from({ length: 10 }, (_, index) => (
           <button
@@ -140,7 +140,6 @@ const EasyMode = () => {
           <div className="overlay-content-easy-game">
             <h2>Time’s up!</h2>
             <p>Final Score: {score}</p>
-            <p>Correct Rounds: {correctRounds} out of {totalRounds}</p>
             <button onClick={handleRestart}>Restart</button>
             <button onClick={handleQuit}>Quit</button>
           </div>

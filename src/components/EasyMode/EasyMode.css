@@ -13,10 +13,16 @@
   
 }
 
-.easy-image-text .easy-img {
-    width: 700px;
-    height: auto;
-  }
+.load-easy-game{
+  display: flex;
+  justify-content: center;
+} 
+
+.easy-img-game {
+  width: 700px;
+  height: auto;
+  margin: 0 auto; 
+}
   
 .easy-game-answer {
     margin: 10px 0;

@@ -1,14 +1,17 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 import './HardMode.css';
 
 function HardMode() {
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  let { level } = useParams();
+
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
   const [timer, setTimer] = useState(15);
   const [round, setRound] = useState(1);
@@ -24,20 +27,21 @@ function HardMode() {
       const { question, solution } = response.data;
       setQuestion(question);
       setSolution(solution);
+      console.log('Solution:', solution);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching question:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
-    startTimer(); // Start the timer when the component mounts
+    startTimer();
 
-    return () => clearInterval(timerInterval.current); // Clear timer on unmount
+    return () => clearInterval(timerInterval.current);
   }, []);
 
   const startTimer = () => {
-    clearInterval(timerInterval.current); // Clear any existing interval before starting a new one
+    clearInterval(timerInterval.current);
     timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
@@ -50,30 +54,45 @@ function HardMode() {
     }, 1000);
   };
 
-  const handleAnswerClick = (number) => {
-    setSelectedAnswer(number);
-    const correct = number === solution;
-    setIsCorrect(correct);
-    if (correct) {
-      setScore((prevScore) => prevScore + 20);
-      setCorrectRounds((prevCorrectRounds) => prevCorrectRounds + 1);
-    }
+  const handleScoreCalculate = async (isAnswerCorrect) => {
+  if (isAnswerCorrect) {
+      const point = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
+      const updatedScore = score + point;
 
-    // Proceed to next round
-    setTotalRounds((prevTotalRounds) => prevTotalRounds + 1);
-    setTimeout(() => {
-      setRound((prevRound) => prevRound + 1);
-      setSelectedAnswer(null);
-      setIsCorrect(null);
-      fetchData();
-    }, 1000);
+      try {
+          const response = await axios.put("http://localhost:3000/api/score", {
+              score: point,
+              level
+          }, {
+              headers: { 'Authorization': `Bearer ${token}` } 
+              
+          });
+
+          if (response.status === 200) {
+              setScore(updatedScore);
+              setCorrectRounds((prev) => prev + 1);
+              fetchData();
+          } else {
+              console.log('Error updating score');
+          }
+      } catch (error) {
+          console.log("Error during score update:", error);
+      }
+  }
+  setTotalRounds((prev) => prev + 1);
+  setSelectedAnswer('');
+};
+
+
+  const handleAnswerClick = (answer) => {
+    setSelectedAnswer(answer);
+    const isAnswerCorrect = answer === solution;
+    setIsCorrect(isAnswerCorrect);
+    handleScoreCalculate(isAnswerCorrect);
   };
 
   const handleRestart = () => {
-    // Clear existing timer interval
     clearInterval(timerInterval.current);
-
-    // Reset state for a new game
     setTimer(15);
     setRound(1);
     setScore(0);
@@ -85,18 +104,20 @@ function HardMode() {
   };
 
   const handleQuit = () => {
-    clearInterval(timerInterval.current); // Clear timer when quitting
+    clearInterval(timerInterval.current);
     navigate('/levelselection');
   };
+
 
   return (
     <div className="container-hard">
       <div className="timer-round-hard">
         <p>Timer: {timer}s</p>
-        <p>Round: {round}</p>
         <p>Score: {score}</p>
       </div>
-      <img className="hard-img" src={question} alt="banana-game-hard" />
+      <div className='load-hard-game'>
+        <img className="hard-img-game" src={question} alt="banana-game-hard" />
+      </div>
       <h5 className="hard-game-answer">Answer is: {solution}</h5>
       <div className="buttons-container-hard">
         {Array.from({ length: 10 }, (_, index) => (
@@ -120,7 +141,6 @@ function HardMode() {
           <div className="overlay-content-hard-game">
             <h2>Time’s up!</h2>
             <p>Final Score: {score}</p>
-            <p>Correct Rounds: {correctRounds} out of {totalRounds}</p>
             <button onClick={handleRestart}>Restart</button>
             <button onClick={handleQuit}>Quit</button>
           </div>
