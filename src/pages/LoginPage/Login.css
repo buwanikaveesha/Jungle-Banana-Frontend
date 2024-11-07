@@ -116,3 +116,73 @@
     text-align: center;
   }
   
+  /* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+    .wrapper1 {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .wrapper1 h1 {
+        font-size: 28px;
+    }
+
+    .input-box1 {
+        margin: 20px 0;
+    }
+
+    .input-box1 input {
+        font-size: 14px;
+        padding: 15px 40px 15px 15px;
+    }
+
+    .loginbtn2 {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .register-link {
+        font-size: 14px;
+    }
+
+    .remember-forgot1 {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper1 {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .wrapper1 h1 {
+        font-size: 24px;
+    }
+
+    .input-box1 {
+        margin: 15px 0;
+    }
+
+    .input-box1 input {
+        font-size: 14px;
+        padding: 12px 30px 12px 12px;
+    }
+
+    .loginbtn2 {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .register-link {
+        font-size: 13px;
+    }
+
+    .remember-forgot1 {
+        font-size: 7px;
+    }
+
+    .error-message {
+        font-size: 14px;
+    }
+}

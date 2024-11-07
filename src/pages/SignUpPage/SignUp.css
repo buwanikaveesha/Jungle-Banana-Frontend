@@ -161,3 +161,76 @@ button[type="submit"]:hover {
   font-weight: bold;
   margin-bottom: 1rem;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .wrapper h1 {
+    font-size: 30px;
+  }
+
+  .input-box input {
+    padding: 15px 20px;
+    font-size: 14px;
+  }
+
+  .wrapper .loginbtn2 {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .signup-form-container {
+    width: 90%;
+    margin-top: 50px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .wrapper h1 {
+    font-size: 24px;
+  }
+
+  .input-box input {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .wrapper .loginbtn2 {
+    font-size: 12px;
+    height: 35px;
+  }
+
+  .signup-form-container {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 12px;
+  }
+}

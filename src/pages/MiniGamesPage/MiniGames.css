@@ -78,4 +78,44 @@
   .start-button:hover {
     background-color: #bdc3c7;
   }
-  
+ /* Mobile responsive styles */
+@media (max-width: 768px) {
+  .title-minigame {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+
+  .games {
+    gap: 20px;
+  }
+
+  .game-card {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .start-button2 {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-minigame {
+    font-size: 1.8rem;
+  }
+
+  .games {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .game-card {
+    width: 100%;
+  }
+
+  .start-button2 {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+} 

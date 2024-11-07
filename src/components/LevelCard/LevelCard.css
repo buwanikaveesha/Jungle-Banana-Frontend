@@ -67,3 +67,66 @@
 .level-btn3:active {
     background-color: #e6b800;
 }
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .level-selection-container {
+      padding: 15px;
+      gap: 12px;
+    }
+  
+    .level-card {
+      width: 180px;
+      padding: 12px;
+    }
+  
+    .level-card h2 {
+      font-size: 16px;
+    }
+  
+    .level-card p {
+      font-size: 1.3rem;
+    }
+  
+    .card-image-button .level-icon {
+      width: 60px; /* Reduce icon size */
+      margin-left: 0;
+    }
+  
+    .level-btn3 {
+      width: 90px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+  }
+  
+  /* Further adjustments for very small screens */
+  @media (max-width: 480px) {
+    .level-selection-container {
+      padding: 10px;
+      gap: 10px;
+    }
+  
+    .level-card {
+      width: 160px;
+      padding: 10px;
+    }
+  
+    .level-card h2 {
+      font-size: 14px;
+    }
+  
+    .level-card p {
+      font-size: 1.1rem;
+    }
+  
+    .card-image-button .level-icon {
+      width: 50px;
+    }
+  
+    .level-btn3 {
+      width: 80px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+  }

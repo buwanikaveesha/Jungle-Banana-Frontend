@@ -42,55 +42,63 @@ const Leaderboard = () => {
     fetchLeaderboard();
   }, [token, difficultyLevel]); // Re-run when difficulty level changes
 
+  // Function to get crown icon based on rank
+  const getCrownIcon = (rank) => {
+    if (rank === 1) return '👑'; // Gold crown for 1st place
+    if (rank === 2) return '🥈'; // Silver medal for 2nd place
+    if (rank === 3) return '🥉'; // Bronze medal for 3rd place
+    return null;
+  };
+
   return (
     <div>
       <SlideMenuBar />
-    <div className="leader-board">
-      <div className='leader-board-title'>
-      <h2>LEADERBOARD</h2>
-      </div>
-      
-      {/* Difficulty Level Selector */}
-      <div>
-        <div> 
-          <label className='choose-mode' htmlFor="difficulty">Choose difficulty:</label>
+      <div className="leader-board">
+        <div className='leader-board-title'>
+          <h2>LEADERBOARD</h2>
         </div>
-        <div className='select-mode'>
-        <select 
-          id="difficulty"
-          value={difficultyLevel}
-          onChange={(e) => setDifficultyLevel(e.target.value)}
-        >
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+        
+        {/* Difficulty Level Selector */}
+        <div>
+          <div> 
+            <label className='choose-mode' htmlFor="difficulty">Choose difficulty:</label>
+          </div>
+          <div className='select-mode'>
+            <select 
+              id="difficulty"
+              value={difficultyLevel}
+              onChange={(e) => setDifficultyLevel(e.target.value)}
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      {/* Leaderboard Table */}
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.map((user) => (
-            <tr key={user.email}>
-              <td>{user.rank}</td>
-              <td>{user.username}</td>
-              <td>{user.score}</td>
+        {/* Leaderboard Table */}
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Score</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {leaderboard.map((user) => (
+              <tr key={user.email}>
+                <td>{getCrownIcon(user.rank)} {user.rank}</td>
+                <td>{user.username}</td>
+                <td>{user.score}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      {/* Display current user's rank */}
-      {userRank && <p>Your Rank: {userRank}</p>}
-    </div>
+        {/* Display current user's rank */}
+        {userRank && <p>Your Rank: {userRank}</p>}
+      </div>
     </div>
   );
 };

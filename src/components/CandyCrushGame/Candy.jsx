@@ -332,13 +332,7 @@ const Candy = () => {
     return (
         <div className='back-img' style={{ 
             backgroundImage: `url(${background})`, 
-            backgroundSize: 'cover', 
-            backgroundPosition: 'center', 
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
+            
         }}>
         <div className="app">
             <div className="score-board">
