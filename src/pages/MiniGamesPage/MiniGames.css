@@ -78,7 +78,7 @@
   .start-button:hover {
     background-color: #bdc3c7;
   }
- /* Mobile responsive styles */
+ 
 @media (max-width: 768px) {
   .title-minigame {
     font-size: 2rem;

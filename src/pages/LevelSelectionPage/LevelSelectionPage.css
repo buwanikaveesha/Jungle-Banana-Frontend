@@ -1,88 +1,84 @@
-/* Center image overlay */
 .center-image-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 .center-image-overlay img {
-    max-width: 80vw;
-    max-height: 80vh;
-    opacity: 0.5;
-    pointer-events: none;
+  max-width: 80vw;
+  max-height: 80vh;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-/* Level selection container */
 .level-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 60px;
 }
 
 .title-level-selection {
-    color: #ff9900;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-family: 'Comic Sans MS', cursive;
-    margin-top: 70px;
-    margin-left: 600px;
-    
+  color: #ff9900;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Comic Sans MS', cursive;
+  margin-top: 70px;
+  margin-left: 600px;
+
 }
 
-/* Level card container */
 .level-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
 
 .level-card-container:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
-/* Responsive styling for screens smaller than 768px */
-@media (max-width: 768px) {
-    .title-level-selection {
-      font-size: 2rem;
-      margin-top: 40px;
-      margin-left: 0;
-      text-align: center;
-    }
-  
-    .level-card-container {
-      gap: 20px;
-    }
+
+.title-level-selection {
+  font-size: 2rem;
+  margin-top: 40px;
+  margin-left: 0;
+  text-align: center;
+}
+
+.level-card-container {
+  gap: 20px;
+}
+
+
+
+@media (max-width: 480px) {
+  .center-image-overlay img {
+    max-width: 85vw;
+    max-height: 85vh;
   }
-  
-  /* Further adjustments for very small screens */
-  @media (max-width: 480px) {
-    .center-image-overlay img {
-      max-width: 85vw;
-      max-height: 85vh;
-    }
-  
-    .title-level-selection {
-      font-size: 1.8rem;
-      margin-top: 30px;
-    }
-  
-    .level-page {
-      padding: 10px;
-      margin-top: 40px; 
-    }
-  
-    .level-card-container {
-      gap: 15px; 
-    }
+
+  .title-level-selection {
+    font-size: 1.8rem;
+    margin-top: 30px;
   }
+
+  .level-page {
+    padding: 10px;
+    margin-top: 40px;
+  }
+
+  .level-card-container {
+    gap: 15px;
+  }
+}

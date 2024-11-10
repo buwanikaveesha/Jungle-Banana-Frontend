@@ -6,7 +6,7 @@ import './MiniGames.css';
 const MiniGames = () => {
   const navigate = useNavigate();
 
-  // Handlers to navigate to each game page
+
   const handleCandyCrushStart = () => {
     navigate('/Candy'); 
   };

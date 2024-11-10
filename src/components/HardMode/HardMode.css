@@ -125,7 +125,7 @@
     transform: translateY(0);
   }
   
-  /* Adjust the timer and other elements for mobile screens */
+
 @media (max-width: 768px) {
   .hard-img-game {
     width: 90%; 

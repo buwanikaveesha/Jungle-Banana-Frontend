@@ -125,8 +125,58 @@
   .overlay-content-mediumgame button:active {
     transform: translateY(0);
   }
+
+  .instruction-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1000;
+    
+  }
   
-  /* Responsive styling for screens smaller than 768px */
+  .instruction-content {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    margin-bottom: 80px;
+  }
+  
+  .instruction-content h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: orange;
+  }
+  
+  .instruction-content p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: aliceblue;
+  }
+  
+  .instruction-content button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .instruction-content button:hover {
+    background-color: #45a049;
+  }
+  
+  
+
 @media (max-width: 768px) {
   .medium-img-game {
     width: 90%;
@@ -163,7 +213,7 @@
   }
 }
 
-/* Further adjustments for screens smaller than 480px */
+
 @media (max-width: 480px) {
   .timer-round-medium {
     font-size: 16px;

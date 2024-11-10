@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Import fruit images
+
 import apple from "../assets/images/fruits/apple.png";
 import dragonfruit from "../assets/images/fruits/dragonfruit.png";
 import durian from "../assets/images/fruits/durian.png";
@@ -107,7 +107,7 @@ const GameContextProvider = ({ children }) => {
     window.location.reload();
   };
 
-  // Function to quit the game and navigate to /miniGames
+  
   const quitGame = () => {
     navigate('/miniGames');
   };

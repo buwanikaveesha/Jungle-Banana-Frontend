@@ -116,7 +116,7 @@
     text-align: center;
   }
   
-  /* Responsive Styles for Mobile Devices */
+
 @media (max-width: 768px) {
     .wrapper1 {
         width: 90%;

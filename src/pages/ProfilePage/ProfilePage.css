@@ -64,7 +64,7 @@
   color: #ff9900;
 }
 
-/* Responsive Design for Mobile Devices */
+
 @media (max-width: 768px) {
   .profile-container {
     padding: 20px;

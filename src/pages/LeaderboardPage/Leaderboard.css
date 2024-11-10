@@ -49,7 +49,6 @@ tbody tr:hover {
   margin-top: 10px;
 }
 
-/* Responsive styles for mobile */
 @media (max-width: 768px) {
   .leader-board-title h2 {
     font-size: 1.8rem;

@@ -26,7 +26,7 @@ const LevelSelectionPage = () => {
                 <div className="level-page">
                 <div className='level-card-container'>
                 <LevelCard 
-                    time = "2 Minutes"
+                    time = "60 Seconds"
                     title = "Easy"
                     btnLevel = "Start"
                     image={easyImage}
@@ -35,7 +35,7 @@ const LevelSelectionPage = () => {
                 />
 
                 <LevelCard 
-                    time = "60 Seconds"
+                    time = "30 Seconds"
                     title = "Medium"
                     btnLevel = "Start"
                     image={mediumImage}

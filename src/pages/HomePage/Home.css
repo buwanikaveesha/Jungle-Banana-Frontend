@@ -1,141 +1,102 @@
-.game-container-home {
-    position: relative; 
-    height: 100vh; 
+
+.banner {
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/images/valentin-petrov-m-mal-01.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: bgZoomIn 4s ease-in-out 1 forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/images/after.png');
+  background-size: cover;
+  background-position: top;
+  transform: scale(2);
+  animation: bgZoomOut 4s ease-in-out 1 forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1.2);
+  } to {
+    transform: scale(1);
+  }
+}
+@keyframes bgZoomOut {
+  from {
+    transform: scale(1);
+  } to {
+    transform: scale(2);
+  }
 }
 
-.fancy-circle {
-    position: absolute;
-    top: 50%; 
-    left: 50%; 
-    width: 600px; 
-    height: 600px; 
-    border-radius: 50%; 
-    background: rgba(255, 215, 0, 0.5); 
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); 
-    transform: translate(-50%, -50%);
-    z-index: 0; 
-    animation: pulse 2s infinite; 
+svg path {
+  fill: transparent;
+  stroke: white;
+  stroke-width: 0.1;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 50;
+  animation: textAnimation 4s ease-in-out 1 forwards;
+}
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 50;
+  }
+  80% {
+    fill: transparent;
+  }
+  100% {
+    fill: #fff;
+    stroke-dashoffset: 0;
+  }
 }
 
-/* Pulse animation for the fancy circle */
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1); 
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.05); 
-    }
-}
-
-.center-image-section {
-    display: flex;                    
-    align-items: center;
-    height: 100vh;
-    width: 100vw; 
-    position: relative;  
-    z-index: 1;
-    margin-left: 470px;
-}
-
-.centered-image {
-    height: auto;                      
-    max-height: 400px;                 
-    max-width: 600px;
-}
-
-
-.game-title {
-    font-size: 36px; 
-    margin: 20px 0; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-}
-
-
-.button-container {
-    position: absolute; 
-    top: 75%; 
-    left: 50%;
-    transform: translate(-50%, -50%);  
-    z-index: 2; 
-   
-}
-
-.loginbtn {
-    padding: 15px 30px; 
-    font-size: 20px; 
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .login-btn {
     background: linear-gradient(45deg, #F4A034, #8E5D1E);
     color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 40px;
     border: none;
-    border-radius: 25px; 
+    border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease; 
-    position: relative; 
-    margin-top: 130px; 
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    width: 100px;
-    height: 50px;
-}
-
-.loginbtn:hover {
-    background: linear-gradient(45deg, #8E5D1E, #F4A034);
-    transform: scale(1.05); 
-}
-
-/* Responsive Styles for Mobile Devices */
-@media (max-width: 768px) {
-    .fancy-circle {
-        width: 400px;
-        height: 400px;
-    }
-
-    .center-image-section {
-        margin-left: 0;
-        justify-content: center;
-    }
-
-    .centered-image {
-        max-height: 300px;  
-        max-width: 80%;
-    }
-
-    .game-title {
-        font-size: 28px;
-    }
-
-    .button-container {
-        top: 70%;
-    }
-
-    .loginbtn {
-        font-size: 18px; 
-        padding: 12px 24px; 
-        width: 80px;
-        height: 45px;
-    }
-}
-
-@media (max-width: 480px) {
-    .fancy-circle {
-        width: 300px;
-        height: 300px;
-    }
-
-    .centered-image {
-        max-height: 250px;
-        max-width: 100%;
-    }
-
-    .game-title {
-        font-size: 24px;
-    }
-
-    .loginbtn {
-        font-size: 16px; 
-        padding: 10px 20px;
-        width: 70px;
-        height: 40px;
-    }
-}
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  
+  .login-btn:hover {
+    background: linear-gradient(45deg, #D9892B, #7A4F1A);
+    box-shadow: 0px 15px 20px rgba(138, 85, 30, 0.4);
+    transform: translateY(-5px);
+  }
+  
+  .login-btn:active {
+    background: linear-gradient(45deg, #C07826, #694216);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+  }
+  

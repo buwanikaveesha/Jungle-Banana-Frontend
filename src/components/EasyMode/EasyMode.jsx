@@ -13,7 +13,7 @@ const EasyMode = () => {
   const [solution, setSolution] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
-  const [timer, setTimer] = useState(120);
+  const [timer, setTimer] = useState(60);
   const [round, setRound] = useState(1);
   const [score, setScore] = useState(0);
   const [correctRounds, setCorrectRounds] = useState(0);
@@ -93,7 +93,7 @@ const EasyMode = () => {
 
   const handleRestart = () => {
     clearInterval(timerInterval.current);
-    setTimer(120);
+    setTimer(60);
     setRound(1);
     setScore(0);
     setCorrectRounds(0);

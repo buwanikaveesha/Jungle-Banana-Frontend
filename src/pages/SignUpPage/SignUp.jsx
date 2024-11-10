@@ -18,7 +18,7 @@ const SignUp = () => {
     setError('');
     setSuccess('');
 
-    // Validate form fields
+
     if (!username || !email || !password) {
       setError('All fields are required.');
       return;
@@ -32,10 +32,10 @@ const SignUp = () => {
       });
       console.log('User signed up:', response.data);
 
-      // Check for success status from the backend
+    
       if (response.data.status) {
         setSuccess('Sign-up successful! Redirecting to login...');
-        // Redirect to login page after 2 seconds
+    
         setTimeout(() => navigate('/login'), 2000);
       } else {
         setError('Sign-up failed. Please try again.');

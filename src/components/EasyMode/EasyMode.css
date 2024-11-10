@@ -120,10 +120,10 @@
   transform: translateY(0);
 }
 
-/* Responsive styles for mobile devices */
+
 @media (max-width: 768px) {
   .easy-img-game {
-    width: 90%; /* Reduce image width */
+    width: 90%;
   }
 
   .easy-game-answer {
@@ -131,13 +131,13 @@
   }
 
   .number-button-easy {
-    width: 35px; /* Smaller buttons */
+    width: 35px;
     height: 35px;
     font-size: 0.9em;
   }
 
   .result {
-    font-size: 1em; /* Adjust font size */
+    font-size: 1em;
   }
 
   .correct, .incorrect {

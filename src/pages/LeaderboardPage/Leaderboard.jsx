@@ -5,11 +5,11 @@ import AuthContext from '../../context/AuthContext';
 import './leaderboard.css';
 
 const Leaderboard = () => {
-  const { token } = useContext(AuthContext); // assuming AuthContext provides token
+  const { token } = useContext(AuthContext);
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
-  const currentUserEmail = 'user@example.com'; // Replace with actual current user’s email
-  const [difficultyLevel, setDifficultyLevel] = useState('easy'); // Default to 'easy'
+  const currentUserEmail = 'user@example.com';
+  const [difficultyLevel, setDifficultyLevel] = useState('easy');
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -19,14 +19,14 @@ const Leaderboard = () => {
         });
         console.log("API response:", response.data);
 
-        // Extract leaderboard data for the specified difficulty level
+        
         const leaderboardData = response.data[difficultyLevel];
 
-        // Check if the leaderboardData is an array
+       
         if (Array.isArray(leaderboardData)) {
           setLeaderboard(leaderboardData);
 
-          // Find the current user's rank if the data includes it
+          
           const currentUser = leaderboardData.find(user => user.email === currentUserEmail);
           if (currentUser) {
             setUserRank(currentUser.rank);
@@ -40,13 +40,13 @@ const Leaderboard = () => {
     };
 
     fetchLeaderboard();
-  }, [token, difficultyLevel]); // Re-run when difficulty level changes
+  }, [token, difficultyLevel]);
 
-  // Function to get crown icon based on rank
+  
   const getCrownIcon = (rank) => {
-    if (rank === 1) return '👑'; // Gold crown for 1st place
-    if (rank === 2) return '🥈'; // Silver medal for 2nd place
-    if (rank === 3) return '🥉'; // Bronze medal for 3rd place
+    if (rank === 1) return '👑';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
     return null;
   };
 
