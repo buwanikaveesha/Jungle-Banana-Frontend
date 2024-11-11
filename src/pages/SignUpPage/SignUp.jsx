@@ -1,7 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { FaLock, FaUser } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
@@ -65,7 +63,7 @@ const SignUp = () => {
               onChange={(e) => setUsername(e.target.value)} 
               required 
             />
-            <FaUser className='icon'/>
+            
           </div>
           
           <div className='input-box'>
@@ -76,7 +74,7 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
             />
-            <MdEmail className='icon'/>
+           
           </div>
           
           <div className='input-box'>
@@ -87,7 +85,7 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)} 
               required 
             />
-            <FaLock className='icon'/>
+            
           </div>
 
           <button className='loginbtn2' type='submit'>Sign Up</button>

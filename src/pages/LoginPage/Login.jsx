@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 import './Login.css';
@@ -53,7 +52,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
             />
-            <FaUser className='icon'/>
+            
           </div>
           <div className='input-box1'>
             <input 
@@ -64,10 +63,10 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)} 
               required 
             />
-            <FaLock className='icon'/>
+           
           </div>
           <div className='remember-forgot1'>
-            <label><input type='checkbox'/>Remember me</label>
+            <label><input type='checkbox'/> Remember me</label>
             <a href='#'>Forgot password</a>
           </div>
           <button className='loginbtn2' type='submit'>Login</button>

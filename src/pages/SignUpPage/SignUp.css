@@ -54,13 +54,6 @@
   color: #fff;
 }
 
-.input-box .icon{
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-}
 
 
 .wrapper .loginbtn2{
@@ -87,6 +80,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 600;
+  font-size: 16px;
 }
 
 .register-link p a:hover {

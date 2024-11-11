@@ -43,17 +43,16 @@
     color: #fff;
 }
 
-.input-box1 .icon{
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-}
-
 .wrapper1 .remember-forgot1 {
     display: flex;
     gap: 8px;
+    font-size: 9px;
+    margin: -10px 0 10px;
+}
+
+.remember-forgot1 {
+    display: flex;
+    justify-content: space-between; /* Space between the elements */
     font-size: 9px;
     margin: -10px 0 10px;
 }
@@ -62,14 +61,16 @@
     color: #fff; 
 }
 
-.remember-forgot1 label input {
+.remember-forgot1 label, input {
     accent-color: #fff;
     margin-right: 4px;
+    font-size: 12px;
 }
 
 .remember-forgot1 a {
     color: #fff;
     text-decoration: none;
+    font-size: 12px;
 }
 
 .remember-forgot1 a:hover {
@@ -98,10 +99,11 @@
     margin-top: 20px;
 }
 
-.register-link p a {
+.register-link p, a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
+    font-size: 16px;
 }
 
 .register-link p a:hover {
