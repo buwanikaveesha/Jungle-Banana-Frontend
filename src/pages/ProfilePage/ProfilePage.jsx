@@ -1,11 +1,25 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import ProfilePic from '../../assets/images/user pic.jpg';
+import GiraffeImage from '../../assets/images/3d-cartoon-wild-animal-nature.png';
+import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import SlideMenuBar from '../../components/NavBar/NavBar';
 import AuthContext from '../../context/AuthContext';
 import './ProfilePage.css';
 
 const ProfilePage = () => {
+
+  const divStyle = {
+    backgroundImage: `url(${ProfileBackgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '100vh',
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
   const { token } = useContext(AuthContext);
   const [user, setUser] = useState(null);
 
@@ -33,31 +47,39 @@ const ProfilePage = () => {
   }
 
   return (
-    <div>
-      <SlideMenuBar />
-      <div className="profile-title">
+    <div style={divStyle}>
+      <div>
+        <SlideMenuBar />
+        <img src={GiraffeImage} alt="Giraffe" className="giraffe-image" />
+        <div className="profile-title">
           <h1>PROFILE</h1>
         </div>
-      <div className="profile-container">
-        
-        <div className='profile-card'>
-          <div className="profile-image">
-            <img src={ProfilePic} alt="Profile" />
+
+        <div className="form-container">
+          <div className="input-field">
+            <label>Name:</label>
+            <input type="text" value={user.username} readOnly />
           </div>
-          <div className="profile-info">
-            <p><strong>Username:</strong> {user.username}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Rank:</strong></p>
-            <div className='rank-difficulty'>
-              <p>Easy: {user.rank.easy}</p>
-              <p>Medium: {user.rank.medium}</p>
-              <p>Hard: {user.rank.hard}</p>
+          <div className="input-field">
+            <label>Email:</label>
+            <input type="email" value={user.email} readOnly />
+          </div>
+
+          <div className="score-section">
+            <div className="score-box">
+              <button className="difficulty-label">Easy</button>
+              <div>Score: {user.score.easy}</div>
+              <div>Rank: {user.rank.easy}</div>
             </div>
-            <p><strong>Scores:</strong></p>
-            <div className='score-difficulty'>
-              <p>Easy: {user.score.easy}</p>
-              <p>Medium: {user.score.medium}</p>
-              <p>Hard: {user.score.hard}</p>
+            <div className="score-box">
+              <button className="difficulty-label">Medium</button>
+              <div>Score: {user.score.medium}</div>
+              <div>Rank: {user.rank.medium}</div>
+            </div>
+            <div className="score-box">
+              <button className="difficulty-label">Hard</button>
+              <div>Score: {user.score.hard}</div>
+              <div>Rank: {user.rank.hard}</div>
             </div>
           </div>
         </div>

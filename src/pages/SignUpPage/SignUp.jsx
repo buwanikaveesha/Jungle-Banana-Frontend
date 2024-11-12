@@ -1,9 +1,23 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import './SignUp.css';
 
 const SignUp = () => {
+
+  const divStyle = {
+    backgroundImage: `url(${ProfileBackgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '100vh',
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -21,6 +35,15 @@ const SignUp = () => {
       setError('All fields are required.');
       return;
     }
+
+      // Password strength validation
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    setError(
+      'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+    );
+    return;
+  }
 
     try {
       const response = await axios.post("http://localhost:3000/api/signup", {
@@ -45,9 +68,7 @@ const SignUp = () => {
   };
 
   return (
-    
-      
-
+    <div style={divStyle}>
       <div className='wrapper'>
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
@@ -94,6 +115,7 @@ const SignUp = () => {
             <p>Already have an account? <a href='./login'>Login</a></p>
           </div>
         </form>
+      </div>
       </div>
   );
 };

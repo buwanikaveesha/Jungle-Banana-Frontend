@@ -12,7 +12,7 @@
 .wrapper {
   width: 420px;
   background: transparent;
-  color: #fff;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +33,7 @@
 
 .wrapper .input-box {
   position: relative;
-  width: 300px;
+  width: 400px;
   height: 50px;
   margin: 30px 0;
 }
@@ -46,18 +46,18 @@
   border: 2px solid rgba(255, 255, 255, 2);
   border-radius: 40px;
   font-size: 16px;
-  color: #fff;
+  color: white;
   padding: 20px 45px 20px 20px;
 }
 
 .input-box input::placeholder{
-  color: #fff;
+  color: black;
 }
 
 
 
 .wrapper .loginbtn2{
-  width: 100%;
+  width: 80%;
   height: 45px;
   background: linear-gradient(45deg, #F4A034, #8E5D1E);
   border: none;
@@ -68,6 +68,7 @@
   font-size: 16px;
   color: #333;
   font-weight: 700;
+  margin-left: 40px;
 }
 
 .wrapper .register-link {

@@ -1,13 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import LionImage from '../../assets/images/cartoon-lion.png';
 import easyImage from '../../assets/images/easyMonkey.png';
 import hardImage from '../../assets/images/hardMonkey.png';
+import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import mediumImage from '../../assets/images/mediumMonkey.png';
 import LevelCard from '../../components/LevelCard/LevelCard';
 import SlideMenuBar from '../../components/NavBar/NavBar';
 import './LevelSelectionPage.css';
 
 const LevelSelectionPage = () => {
+
+    const divStyle = {
+        backgroundImage: `url(${ProfileBackgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        margin: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
 
     const navigate = useNavigate();
     
@@ -16,8 +30,11 @@ const LevelSelectionPage = () => {
     }
 
     return (
+        
+        <div style={divStyle}>
         <>
         <div>
+        <img src={LionImage} alt="Lion" className="lion-image" />
         <SlideMenuBar /> {/* Add SlideMenuBar */}
             {/* Level selection interface */}
             
@@ -53,6 +70,7 @@ const LevelSelectionPage = () => {
             </div>
             </div>
         </>
+        </div>
     );
 };
 

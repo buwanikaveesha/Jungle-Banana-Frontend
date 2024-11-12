@@ -31,7 +31,8 @@
   margin-bottom: 20px;
   font-family: 'Comic Sans MS', cursive;
   margin-top: 70px;
-  margin-left: 600px;
+  margin-left: 130px;
+  text-align: center;
 
 }
 
@@ -60,7 +61,14 @@
   gap: 20px;
 }
 
-
+.lion-image {
+  position: absolute;
+  bottom: -50px;
+  right: -20px;
+  width: 500px;
+  height: auto;
+  z-index: 1;
+}
 
 @media (max-width: 480px) {
   .center-image-overlay img {
