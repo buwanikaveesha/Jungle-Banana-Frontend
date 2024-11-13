@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import ZebraImage from '../../assets/images/cute-tiger-studio.png';
+import TigerImage from '../../assets/images/cute-tiger-studio.png';
 import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import SlideMenuBar from '../../components/NavBar/NavBar';
 import AuthContext from '../../context/AuthContext';
@@ -68,7 +68,7 @@ const Leaderboard = () => {
   return (
     <div style={divStyle}>
       <SlideMenuBar />
-      <img src={ZebraImage} alt="Zibra" className="zibra-image" />
+      <img src={TigerImage} alt="Tiger" className="tiger-image" />
       <div className='leader-board-title'>
         <h2>LEADERBOARD</h2>
       </div>

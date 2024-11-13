@@ -80,10 +80,10 @@ tbody tr:hover {
   margin-top: 20px;
 }
 
-.zibra-image {
+.tiger-image {
   position: absolute;
   bottom: -60px;
-  right: -10px;
+  right: 20px;
   width: 400px;
   height: auto;
   z-index: 1;
