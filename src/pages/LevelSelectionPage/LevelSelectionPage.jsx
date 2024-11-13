@@ -21,55 +21,54 @@ const LevelSelectionPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-      };
+    };
 
     const navigate = useNavigate();
-    
+
     const handleLevel = (level) => {
         navigate(`/level/${level}`);
     }
 
     return (
-        
+
         <div style={divStyle}>
-        <>
-        <div>
-        <img src={LionImage} alt="Lion" className="lion-image" />
-        <SlideMenuBar /> {/* Add SlideMenuBar */}
-            {/* Level selection interface */}
-            
+            <>
                 <h1 className="title-level-selection">CHOOSE A LEVEL</h1>
-                <br></br>
-                <div className="level-page">
-                <div className='level-card-container'>
-                <LevelCard 
-                    time = "60 Seconds"
-                    title = "Easy"
-                    btnLevel = "Start"
-                    image={easyImage}
-                    onStart={() => handleLevel('easy')}
-                    
-                />
+                <div>
+                    <img src={LionImage} alt="Lion" className="lion-image" />
 
-                <LevelCard 
-                    time = "30 Seconds"
-                    title = "Medium"
-                    btnLevel = "Start"
-                    image={mediumImage}
-                    onStart={() => handleLevel('medium')}
-                />
+                    <SlideMenuBar /> {/* Add SlideMenuBar */}
 
-                <LevelCard 
-                    time = "15 Seconds"
-                    title = "Hard"
-                    btnLevel = "Start"
-                    image={hardImage}
-                    onStart={() => handleLevel('hard')}
-                />
-            </div>
-            </div>
-            </div>
-        </>
+                    <div className="level-page">
+                        <div className='level-card-container'>
+                            <LevelCard
+                                time="60 Seconds"
+                                title="Easy"
+                                btnLevel="Start"
+                                image={easyImage}
+                                onStart={() => handleLevel('easy')}
+
+                            />
+
+                            <LevelCard
+                                time="30 Seconds"
+                                title="Medium"
+                                btnLevel="Start"
+                                image={mediumImage}
+                                onStart={() => handleLevel('medium')}
+                            />
+
+                            <LevelCard
+                                time="15 Seconds"
+                                title="Hard"
+                                btnLevel="Start"
+                                image={hardImage}
+                                onStart={() => handleLevel('hard')}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </>
         </div>
     );
 };

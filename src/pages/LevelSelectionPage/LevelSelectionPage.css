@@ -22,16 +22,15 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin-top: 60px;
+  margin-bottom: 50px;
 }
 
 .title-level-selection {
   color: #ff9900;
   font-size: 2.5rem;
-  margin-bottom: 20px;
   font-family: 'Comic Sans MS', cursive;
-  margin-top: 70px;
-  margin-left: 130px;
+  margin-bottom: 110px;
+  margin-left: 50px;
   text-align: center;
 
 }
@@ -49,13 +48,6 @@
   background-color: transparent;
 }
 
-
-.title-level-selection {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-left: 0;
-  text-align: center;
-}
 
 .level-card-container {
   gap: 20px;
