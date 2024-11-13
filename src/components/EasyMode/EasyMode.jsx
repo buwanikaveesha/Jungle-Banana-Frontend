@@ -6,6 +6,24 @@ import backgroundImage from '../../assets/images/dark-jungle.jpg';
 import AuthContext from '../../context/AuthContext';
 import './EasyMode.css';
 
+function InstructionOverlay({ onClose }) {
+  return (
+    <div className="instruction-overlay">
+      <div className="instruction-content">
+        <h2>How to Play the Banana Game</h2>
+        <p>
+          Solve the given equations vertically by finding the correct numbers to complete each equation.
+          Click the number buttons to submit your answer for each equation. Points will be awarded based on the accuracy and difficulty level.
+        </p>
+        <p>
+          You have a limited time to solve as many equations as possible. Try to achieve the highest score!
+        </p>
+        <button onClick={onClose}>Got it!</button>
+      </div>
+    </div>
+  );
+}
+
 const EasyMode = () => {
   const divStyle = {
     backgroundImage: `url(${backgroundImage})`,
@@ -38,6 +56,15 @@ const EasyMode = () => {
   const [notificationType, setNotificationType] = useState('');
   const [loading, setLoading] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
+  const [isGameReady, setIsGameReady] = useState(false);
+
+  const handleCloseInstructions = () => {
+    setShowInstructions(false);
+    if (!showInstructions) {
+      startTimer();
+    }
+  };
 
   const fetchData = async () => {
     if (loading) return;
@@ -58,11 +85,17 @@ const EasyMode = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    
+    if (!showInstructions) {
+      startTimer();
+      fetchData();
+    }
     return () => clearInterval(timerInterval.current);
-  }, []);
+  }, [showInstructions]);
+
 
   const startTimer = () => {
+    setTimer(60);
     clearInterval(timerInterval.current);
     timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
@@ -78,7 +111,6 @@ const EasyMode = () => {
 
   const handleImageLoad = () => {
     setIsImageLoaded(true);
-    startTimer();
   };
 
   const handleScoreCalculate = async (isAnswerCorrect) => {
@@ -109,7 +141,7 @@ const EasyMode = () => {
     }
     setTotalRounds((prev) => prev + 1);
     setSelectedAnswer('');
-    
+
     if (isAnswerCorrect) {
       fetchData();
     }
@@ -125,11 +157,10 @@ const EasyMode = () => {
     setSelectedAnswer(answer);
     const isAnswerCorrect = answer === solution;
     setIsCorrect(isAnswerCorrect);
-  
+
     if (isAnswerCorrect) {
       showNotification('Correct! Well done', 'correct');
       handleScoreCalculate(true);
-      
     } else {
       showNotification('Incorrect! Try again', 'incorrect');
       handleScoreCalculate(false);
@@ -145,6 +176,7 @@ const EasyMode = () => {
     setTotalRounds(0);
     setShowOverlay(false);
     setIsCorrect(null);
+    setIsGameReady(false);
     fetchData();
   };
 
@@ -155,6 +187,9 @@ const EasyMode = () => {
 
   return (
     <div style={divStyle}>
+      {/* Instruction overlay */}
+      {showInstructions && <InstructionOverlay onClose={handleCloseInstructions} />}
+
       <img src={monkeyImage} alt="Monkey" className="monkey-image" />
       <div className="score-timer">
         <p>Timer: {timer}s</p>
@@ -175,7 +210,7 @@ const EasyMode = () => {
       </div>
       <br></br>
       <div className="answer-options">
-        <h5 className="medium-game-answer">Answer is: {solution}</h5>
+        <h5 className="easy-game-answer">Answer is: {solution}</h5>
         {Array.from({ length: 10 }, (_, index) => (
           <button
             key={index}

@@ -93,6 +93,7 @@ function MediumMode() {
     return () => clearInterval(timerInterval.current);
   }, [showInstructions]);
 
+  
   const startTimer = () => {
     setTimer(30);
     clearInterval(timerInterval.current);

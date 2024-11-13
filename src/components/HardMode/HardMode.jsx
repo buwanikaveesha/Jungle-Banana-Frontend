@@ -39,7 +39,7 @@ function HardMode() {
 
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { level } = useParams();
+  let { level } = useParams();
 
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
@@ -59,35 +59,12 @@ function HardMode() {
   const [showInstructions, setShowInstructions] = useState(true);
   const [isGameReady, setIsGameReady] = useState(false);
 
+
   const handleCloseInstructions = () => {
     setShowInstructions(false);
     if (!showInstructions) {
       startTimer();
     }
-  };
-
-  const startTimer = () => {
-    setTimer(30);
-    clearInterval(timerInterval.current);
-    timerInterval.current = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
-          clearInterval(timerInterval.current);
-          setShowOverlay(true);
-          return 0;
-        }
-        return prevTimer - 1;
-      });
-    }, 1000);
-  };
-
-  const resetTimer = () => {
-    setTimer(15);
-    startTimer();
-  };
-
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
   };
 
   const fetchData = async () => {
@@ -116,6 +93,25 @@ function HardMode() {
     }
     return () => clearInterval(timerInterval.current);
   }, [showInstructions]);
+
+  const startTimer = () => {
+    setTimer(15);
+    clearInterval(timerInterval.current);
+    timerInterval.current = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer <= 1) {
+          clearInterval(timerInterval.current);
+          setShowOverlay(true);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
 
   const handleScoreCalculate = async (isAnswerCorrect) => {
     if (isAnswerCorrect) {
