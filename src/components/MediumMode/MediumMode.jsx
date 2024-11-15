@@ -30,7 +30,6 @@ function MediumMode() {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: '100vh',
-    margin: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,15 +38,13 @@ function MediumMode() {
 
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  let { level } = useParams();
+  const { level } = useParams();
 
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
   const [notification, setNotification] = useState('');
   const [timer, setTimer] = useState(30);
-  const [round, setRound] = useState(1);
   const [score, setScore] = useState(0);
   const [correctRounds, setCorrectRounds] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
@@ -55,20 +52,15 @@ function MediumMode() {
   const timerInterval = useRef(null);
   const [notificationType, setNotificationType] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
-  const [isGameReady, setIsGameReady] = useState(false);
 
   const handleCloseInstructions = () => {
     setShowInstructions(false);
-    if (!showInstructions) {
-      startTimer();
-    }
+    startTimer();
   };
 
   const fetchData = async () => {
     if (loading) return;
-
     setLoading(true);
 
     try {
@@ -76,7 +68,6 @@ function MediumMode() {
       const { question, solution } = response.data;
       setQuestion(question);
       setSolution(solution);
-      setIsImageLoaded(false);
     } catch (error) {
       console.error("Error fetching question:", error);
     } finally {
@@ -85,7 +76,6 @@ function MediumMode() {
   };
 
   useEffect(() => {
-    
     if (!showInstructions) {
       startTimer();
       fetchData();
@@ -93,7 +83,6 @@ function MediumMode() {
     return () => clearInterval(timerInterval.current);
   }, [showInstructions]);
 
-  
   const startTimer = () => {
     setTimer(30);
     clearInterval(timerInterval.current);
@@ -107,10 +96,6 @@ function MediumMode() {
         return prevTimer - 1;
       });
     }, 1000);
-  };
-
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
   };
 
   const handleScoreCalculate = async (isAnswerCorrect) => {
@@ -141,10 +126,7 @@ function MediumMode() {
     }
     setTotalRounds((prev) => prev + 1);
     setSelectedAnswer('');
-
-    if (isAnswerCorrect) {
-      fetchData();
-    }
+    if (isAnswerCorrect) fetchData();
   };
 
   const showNotification = (message, type) => {
@@ -156,7 +138,6 @@ function MediumMode() {
   const handleAnswerClick = (answer) => {
     setSelectedAnswer(answer);
     const isAnswerCorrect = answer === solution;
-    setIsCorrect(isAnswerCorrect);
 
     if (isAnswerCorrect) {
       showNotification('Correct! Well done', 'correct');
@@ -170,13 +151,10 @@ function MediumMode() {
   const handleRestart = () => {
     clearInterval(timerInterval.current);
     setTimer(30);
-    setRound(1);
     setScore(0);
     setCorrectRounds(0);
     setTotalRounds(0);
     setShowOverlay(false);
-    setIsCorrect(null);
-    setIsGameReady(false);
     fetchData();
   };
 
@@ -187,7 +165,6 @@ function MediumMode() {
 
   return (
     <div style={divStyle}>
-      {/* Instruction overlay */}
       {showInstructions && <InstructionOverlay onClose={handleCloseInstructions} />}
 
       <img src={monkeyImage} alt="Monkey" className="monkey-image" />
@@ -205,7 +182,6 @@ function MediumMode() {
           className="medium-img-game"
           src={question}
           alt="banana-game-medium"
-          onLoad={handleImageLoad}
         />
       </div>
       <br />

@@ -25,159 +25,99 @@ function InstructionOverlay({ onClose }) {
 }
 
 function HardMode() {
-  const divStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: '100vh',
-    margin: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  let { level } = useParams();
+  const { level } = useParams();
 
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
   const [notification, setNotification] = useState('');
   const [timer, setTimer] = useState(15);
-  const [round, setRound] = useState(1);
   const [score, setScore] = useState(0);
-  const [correctRounds, setCorrectRounds] = useState(0);
-  const [totalRounds, setTotalRounds] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
-  const timerInterval = useRef(null);
-  const [notificationType, setNotificationType] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
-  const [isGameReady, setIsGameReady] = useState(false);
+  const [notificationType, setNotificationType] = useState('');
+  const timerInterval = useRef(null);
 
-
-  const handleCloseInstructions = () => {
-    setShowInstructions(false);
+  useEffect(() => {
     if (!showInstructions) {
       startTimer();
+      fetchQuestion();
     }
-  };
 
-  const fetchData = async () => {
-    if (loading) return;
+    return () => clearInterval(timerInterval.current);
+  }, [showInstructions]);
 
-    setLoading(true);
-
+  const fetchQuestion = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/question");
       const { question, solution } = response.data;
       setQuestion(question);
       setSolution(solution);
-      setIsImageLoaded(false);
     } catch (error) {
       console.error("Error fetching question:", error);
-    } finally {
-      setLoading(false);
     }
   };
-
-  useEffect(() => {
-    
-    if (!showInstructions) {
-      startTimer();
-      fetchData();
-    }
-    return () => clearInterval(timerInterval.current);
-  }, [showInstructions]);
 
   const startTimer = () => {
     setTimer(15);
     clearInterval(timerInterval.current);
     timerInterval.current = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
+      setTimer((prev) => {
+        if (prev <= 1) {
           clearInterval(timerInterval.current);
           setShowOverlay(true);
           return 0;
         }
-        return prevTimer - 1;
+        return prev - 1;
       });
     }, 1000);
   };
 
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
+  const handleCloseInstructions = () => {
+    setShowInstructions(false);
   };
 
-  const handleScoreCalculate = async (isAnswerCorrect) => {
-    if (isAnswerCorrect) {
-      const point = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
-      const updatedScore = score + point;
+  const handleAnswerClick = async (answer) => {
+    setSelectedAnswer(answer);
+    const isCorrect = answer === solution;
+
+    setNotification(isCorrect ? 'Correct! Well done' : 'Incorrect! Try again');
+    setNotificationType(isCorrect ? 'correct' : 'incorrect');
+
+    if (isCorrect) {
+      const points = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
+      setScore((prev) => prev + points);
 
       try {
-        const response = await axios.put("http://localhost:3000/api/score", {
-          score: point,
-          level
-        }, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-
-        if (response.status === 200) {
-          setScore(updatedScore);
-          setCorrectRounds((prev) => prev + 1);
-        } else {
-          console.log('Error updating score, Status:', response.status);
-        }
+        await axios.put(
+          "http://localhost:3000/api/score",
+          { score: points, level },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       } catch (error) {
-        console.log("Error during score update:", error.response ? error.response.data : error.message);
-        if (error.response && error.response.status === 403) {
+        console.error("Error updating score:", error);
+        if (error.response?.status === 403) {
           alert('Session expired. Please log in again.');
+          navigate('/login');
         }
       }
     }
-    setTotalRounds((prev) => prev + 1);
-    setSelectedAnswer('');
 
-    if (isAnswerCorrect) {
-      fetchData();
-    }
-  };
-
-  const showNotification = (message, type) => {
-    setNotification(message);
-    setNotificationType(type);
-    setTimeout(() => setNotification(''), 2000);
-  };
-
-  const handleAnswerClick = (answer) => {
-    setSelectedAnswer(answer);
-    const isAnswerCorrect = answer === solution;
-    setIsCorrect(isAnswerCorrect);
-
-    if (isAnswerCorrect) {
-      showNotification('Correct! Well done', 'correct');
-      handleScoreCalculate(true);
-    } else {
-      showNotification('Incorrect! Try again', 'incorrect');
-      handleScoreCalculate(false);
-    }
+    setTimeout(() => {
+      setNotification('');
+      if (isCorrect) fetchQuestion();
+    }, 2000);
   };
 
   const handleRestart = () => {
     clearInterval(timerInterval.current);
     setTimer(15);
-    setRound(1);
     setScore(0);
-    setCorrectRounds(0);
-    setTotalRounds(0);
     setShowOverlay(false);
-    setIsCorrect(null);
-    setIsGameReady(false);
-    fetchData();
+    fetchQuestion();
+    startTimer();
   };
 
   const handleQuit = () => {
@@ -186,7 +126,19 @@ function HardMode() {
   };
 
   return (
-    <div style={divStyle}>
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        margin: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       {showInstructions && <InstructionOverlay onClose={handleCloseInstructions} />}
 
       <img src={monkeyImage} alt="Monkey" className="monkey-image" />
@@ -195,22 +147,14 @@ function HardMode() {
         <p>Score: {score}</p>
       </div>
 
-      {timer <= 10 && (
-        <ThinkingBubble timer={timer} />
-      )}
+      {timer <= 10 && <ThinkingBubble timer={timer} />}
 
-
-      <div className='load-easy-game'>
-        <img
-          className="easy-img-game"
-          src={question}
-          alt="banana-game-easy"
-          onLoad={handleImageLoad}
-        />
+      <div className="load-question">
+        <img src={question} alt="Game Question" />
       </div>
-      <br />
+
       <div className="answer-options">
-      <h5 className="medium-game-answer">Answer is: {solution}</h5>
+      <h5 className="easy-game-answer">Answer is: {solution}</h5>
         {Array.from({ length: 10 }, (_, index) => (
           <button
             key={index}
@@ -240,12 +184,11 @@ function HardMode() {
       )}
     </div>
   );
-};
+}
 
 const ThinkingBubble = ({ timer }) => (
   <div className="thinking-bubble">
-    <p>Hurry up!<br></br> Only {timer} seconds left!</p>
+    <p>Hurry up!<br /> Only {timer} seconds left!</p>
   </div>
 );
-
 export default HardMode;

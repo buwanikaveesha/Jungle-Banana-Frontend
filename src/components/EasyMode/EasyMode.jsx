@@ -30,7 +30,6 @@ const EasyMode = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: '100vh',
-    margin: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,7 +38,7 @@ const EasyMode = () => {
 
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  let { level } = useParams();
+  const { level } = useParams();
 
   const [question, setQuestion] = useState('');
   const [solution, setSolution] = useState(0);
@@ -47,36 +46,28 @@ const EasyMode = () => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [notification, setNotification] = useState('');
   const [timer, setTimer] = useState(60);
-  const [round, setRound] = useState(1);
   const [score, setScore] = useState(0);
   const [correctRounds, setCorrectRounds] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
-  const timerInterval = useRef(null);
   const [notificationType, setNotificationType] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
-  const [isGameReady, setIsGameReady] = useState(false);
+
+  const timerInterval = useRef(null);
 
   const handleCloseInstructions = () => {
     setShowInstructions(false);
-    if (!showInstructions) {
-      startTimer();
-    }
+    startTimer();
   };
 
   const fetchData = async () => {
     if (loading) return;
-
     setLoading(true);
-
     try {
       const response = await axios.get("http://localhost:3000/api/question");
-      const { question, solution } = response.data;
-      setQuestion(question);
-      setSolution(solution);
-      setIsImageLoaded(false);
+      setQuestion(response.data.question);
+      setSolution(response.data.solution);
     } catch (error) {
       console.error("Error fetching question:", error);
     } finally {
@@ -85,14 +76,12 @@ const EasyMode = () => {
   };
 
   useEffect(() => {
-    
     if (!showInstructions) {
       startTimer();
       fetchData();
     }
     return () => clearInterval(timerInterval.current);
   }, [showInstructions]);
-
 
   const startTimer = () => {
     setTimer(60);
@@ -109,42 +98,25 @@ const EasyMode = () => {
     }, 1000);
   };
 
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
-  };
-
   const handleScoreCalculate = async (isAnswerCorrect) => {
     if (isAnswerCorrect) {
-      const point = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
-      const updatedScore = score + point;
-
+      const points = level === 'easy' ? 5 : level === 'medium' ? 10 : 20;
       try {
-        const response = await axios.put("http://localhost:3000/api/score", {
-          score: point,
-          level
-        }, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-
+        const response = await axios.put("http://localhost:3000/api/score", { score: points, level }, { headers: { 'Authorization': `Bearer ${token}` } });
         if (response.status === 200) {
-          setScore(updatedScore);
+          setScore((prev) => prev + points);
           setCorrectRounds((prev) => prev + 1);
         } else {
           console.log('Error updating score, Status:', response.status);
         }
       } catch (error) {
         console.log("Error during score update:", error.response ? error.response.data : error.message);
-        if (error.response && error.response.status === 403) {
-          alert('Session expired. Please log in again.');
-        }
+        if (error.response && error.response.status === 403) alert('Session expired. Please log in again.');
       }
     }
     setTotalRounds((prev) => prev + 1);
     setSelectedAnswer('');
-
-    if (isAnswerCorrect) {
-      fetchData();
-    }
+    if (isAnswerCorrect) fetchData();
   };
 
   const showNotification = (message, type) => {
@@ -154,29 +126,21 @@ const EasyMode = () => {
   };
 
   const handleAnswerClick = (answer) => {
-    setSelectedAnswer(answer);
     const isAnswerCorrect = answer === solution;
+    setSelectedAnswer(answer);
     setIsCorrect(isAnswerCorrect);
-
-    if (isAnswerCorrect) {
-      showNotification('Correct! Well done', 'correct');
-      handleScoreCalculate(true);
-    } else {
-      showNotification('Incorrect! Try again', 'incorrect');
-      handleScoreCalculate(false);
-    }
+    showNotification(isAnswerCorrect ? 'Correct! Well done' : 'Incorrect! Try again', isAnswerCorrect ? 'correct' : 'incorrect');
+    handleScoreCalculate(isAnswerCorrect);
   };
 
   const handleRestart = () => {
     clearInterval(timerInterval.current);
     setTimer(60);
-    setRound(1);
     setScore(0);
     setCorrectRounds(0);
     setTotalRounds(0);
     setShowOverlay(false);
     setIsCorrect(null);
-    setIsGameReady(false);
     fetchData();
   };
 
@@ -187,7 +151,6 @@ const EasyMode = () => {
 
   return (
     <div style={divStyle}>
-      {/* Instruction overlay */}
       {showInstructions && <InstructionOverlay onClose={handleCloseInstructions} />}
 
       <img src={monkeyImage} alt="Monkey" className="monkey-image" />
@@ -196,19 +159,12 @@ const EasyMode = () => {
         <p>Score: {score}</p>
       </div>
 
-      {timer <= 10 && (
-        <ThinkingBubble timer={timer} />
-      )}
+      {timer <= 10 && <ThinkingBubble timer={timer} />}
 
       <div className='load-easy-game'>
-        <img
-          className="easy-img-game"
-          src={question}
-          alt="banana-game-easy"
-          onLoad={handleImageLoad}
-        />
+        <img className="easy-img-game" src={question} alt="banana-game-easy" />
       </div>
-      <br></br>
+      <br />
       <div className="answer-options">
         <h5 className="easy-game-answer">Answer is: {solution}</h5>
         {Array.from({ length: 10 }, (_, index) => (
@@ -222,11 +178,7 @@ const EasyMode = () => {
         ))}
       </div>
 
-      {notification && (
-        <div className={`notification-popup ${notificationType}`}>
-          {notification}
-        </div>
-      )}
+      {notification && <div className={`notification-popup ${notificationType}`}>{notification}</div>}
 
       {showOverlay && (
         <div className="overlay">
@@ -244,7 +196,7 @@ const EasyMode = () => {
 
 const ThinkingBubble = ({ timer }) => (
   <div className="thinking-bubble">
-    <p>Hurry up!<br></br> Only {timer} seconds left!</p>
+    <p>Hurry up!<br /> Only {timer} seconds left!</p>
   </div>
 );
 
