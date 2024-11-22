@@ -46,7 +46,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
-      setErrorMessage('An error occurred while logging in. Please try again later.');
+      setErrorMessage('Incorrect Username or Password. Try again!');
       setEmail('');
       setPassword('');
     }
@@ -57,7 +57,7 @@ const Login = () => {
       <div className='wrapper1'>
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessage && <p className="login-error-message">{errorMessage}</p>}
           <div className='input-box1'>
             <input
               type='text'
@@ -82,7 +82,7 @@ const Login = () => {
           </div>
           <div className='remember-forgot1'>
             <label><input type='checkbox' /> Remember me</label>
-            <a href='#'>Forgot password</a>
+            <a href='./forgotPassword'>Forgot password</a>
           </div>
           <button className='loginbtn2' type='submit'>Login</button>
           <br />

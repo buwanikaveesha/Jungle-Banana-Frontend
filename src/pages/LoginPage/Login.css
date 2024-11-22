@@ -110,8 +110,8 @@
     text-decoration: underline;
 }
 
-.error-message {
-    color: rgb(229, 80, 80);
+.login-error-message {
+    color: #f44336;
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 10px;

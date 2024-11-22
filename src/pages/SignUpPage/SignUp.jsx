@@ -73,7 +73,7 @@ const SignUp = () => {
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="signUp-error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
           
           <div className='input-box'>

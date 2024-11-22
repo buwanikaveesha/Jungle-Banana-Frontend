@@ -144,10 +144,11 @@ button[type="submit"]:hover {
 }
 
 
-.error {
-  color: #d9534f;
+.signUp-error-message {
+  color: #f44336;
   font-size: 0.875rem;
   margin-top: 0.25rem;
+  text-align: center;
 }
 
 .success-message {

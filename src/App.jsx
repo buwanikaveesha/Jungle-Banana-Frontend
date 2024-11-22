@@ -7,12 +7,14 @@ import MediumMode from './components/MediumMode/MediumMode';
 import MemoryCardGame from './components/MemoryCardGame/MemoryCard';
 import NavBar from './components/NavBar/NavBar';
 import { AuthProvider } from './context/AuthContext';
+import ForgotPassword from './pages/ForgotPasswordPage/ForgotPassword';
 import Home from './pages/HomePage/Home';
 import Leaderboard from './pages/LeaderboardPage/Leaderboard';
 import LevelSelectionPage from './pages/LevelSelectionPage/LevelSelectionPage';
 import Login from './pages/LoginPage/Login';
 import MiniGames from './pages/MiniGamesPage/MiniGames';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import ResetPassword from './pages/ResetPasswordPage/ResetPassword';
 import SignUp from './pages/SignUpPage/SignUp';
 
 
@@ -52,6 +54,8 @@ const App = () => {
           <Route path='/memoryCardGame' element={<MemoryCardGame />} />
           <Route path='/candy' element={<Candy />} />
           <Route path='/level/:level' element={<LevelRouter />} />
+          <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
