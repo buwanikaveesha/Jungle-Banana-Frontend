@@ -43,7 +43,7 @@ const ForgotPassword = () => {
     <div style={divStyle}>
     <div className="forgot-password-container">
       <h1 className="forgot-password-title">Forgot Password</h1>
-      {message && <p className="success-message">{message}</p>}
+      {message && <p className="forgot-success-message">{message}</p>}
       {error && <p className="forgot-error-message">{error}</p>}
       <form className="forgot-password-form" onSubmit={handleSubmit}>
         <input

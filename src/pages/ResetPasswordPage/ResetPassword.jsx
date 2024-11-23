@@ -27,7 +27,6 @@ const ResetPassword = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   
-  // Password strength validation regex
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   if (!passwordRegex.test(password)) {
     setError(
@@ -42,7 +41,7 @@ const handleSubmit = async (e) => {
       { password }
     );
 
-    console.log(response); // Log response for debugging
+    console.log(response);
     setMessage(response.data.message);
     setError('');
 
@@ -50,7 +49,7 @@ const handleSubmit = async (e) => {
       navigate('/login');
     }, 3000);
   } catch (err) {
-    console.error(err); // Log error for debugging
+    console.error(err);
     setError(err?.response?.data?.message || 'An error occurred.');
     setMessage('');
   }
@@ -61,7 +60,7 @@ const handleSubmit = async (e) => {
     <div style={divStyle}>
       <div className="reset-password-container">
         <h1 className="reset-password-title">Reset Password</h1>
-        {message && <p className="success-message">{message}</p>}
+        {message && <p className="reset-success-message">{message}</p>}
         {error && <p className="reset-error-message">{error}</p>}
         <form className="reset-password-form" onSubmit={handleSubmit}>
           <input
