@@ -41,7 +41,7 @@ const ForgotPassword = () => {
 
   return (
     <div style={divStyle}>
-    <div className="forgot-password-container">
+    <div className="forgot-password-page">
       <h1 className="forgot-password-title">Forgot Password</h1>
       {message && <p className="forgot-success-message">{message}</p>}
       {error && <p className="forgot-error-message">{error}</p>}

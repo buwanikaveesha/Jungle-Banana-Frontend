@@ -5,13 +5,11 @@ import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import './ResetPassword.css';
 
 const ResetPassword = () => {
-
   const divStyle = {
     backgroundImage: `url(${ProfileBackgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: '100vh',
-    margin: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -24,41 +22,38 @@ const ResetPassword = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (!passwordRegex.test(password)) {
-    setError(
-      'Password must be 8+ characters, with at least one uppercase, one lowercase, one number, and one special character.'
-    );
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await axios.post(
-      `http://localhost:3000/api/reset-password/${id}/${token}`,
-      { password }
-    );
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        'Password must be 8+ characters, with at least one uppercase, one lowercase, one number, and one special character.'
+      );
+      return;
+    }
 
-    console.log(response);
-    setMessage(response.data.message);
-    setError('');
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/reset-password/${id}/${token}`,
+        { password }
+      );
 
-    setTimeout(() => {
-      navigate('/login');
-    }, 3000);
-  } catch (err) {
-    console.error(err);
-    setError(err?.response?.data?.message || 'An error occurred.');
-    setMessage('');
-  }
-};
-
+      setMessage(response.data.message);
+      setError('');
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
+    } catch (err) {
+      setError(err?.response?.data?.message || 'An error occurred.');
+      setMessage('');
+    }
+  };
 
   return (
     <div style={divStyle}>
-      <div className="reset-password-container">
+      <div className="reset-password-page">
         <h1 className="reset-password-title">Reset Password</h1>
         {message && <p className="reset-success-message">{message}</p>}
         {error && <p className="reset-error-message">{error}</p>}
