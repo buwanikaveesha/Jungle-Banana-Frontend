@@ -17,25 +17,22 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ResetPassword from './pages/ResetPasswordPage/ResetPassword';
 import SignUp from './pages/SignUpPage/SignUp';
 
-
 const LevelRouter = () => {
-
   const { level } = useParams();
 
   switch(level) {
     case 'easy':
-      return <EasyMode />
+      return <EasyMode />;
     
     case 'medium':
-      return <MediumMode />
+      return <MediumMode />;
 
     case 'hard':
-      return <HardMode />
+      return <HardMode />;
 
     default:
-      return <div>Level not found</div>
+      return <div>Level not found</div>;
   }
-
 }
 
 const App = () => {
@@ -59,7 +56,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-
   );
 }
 

@@ -25,12 +25,14 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
     if (!passwordRegex.test(password)) {
-      setError(
-        'Password must be 8+ characters, with at least one uppercase, one lowercase, one number, and one special character.'
-      );
+      setError('Password must be at least 6 characters long and include at least one letter and one number.');
+      return;
+    }
+
+    if (!password.trim()) {
+      setError('Password cannot be empty.');
       return;
     }
 
@@ -46,7 +48,12 @@ const ResetPassword = () => {
         navigate('/login');
       }, 3000);
     } catch (err) {
-      setError(err?.response?.data?.message || 'An error occurred.');
+      // Handle server error
+      if (err?.response) {
+        setError(err?.response?.data?.message || 'An error occurred during password reset.');
+      } else {
+        setError('An unexpected error occurred.');
+      }
       setMessage('');
     }
   };

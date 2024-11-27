@@ -23,21 +23,22 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
-      const response = await axios.post('http://localhost:3000/api/forgot-password', { email });
-
-      if (response.status === 200) {
-        window.alert(response.data.message);
-        setMessage(response.data.message);
-      } else {
-        setError("Unexpected response from server.");
-      }
+      const response = await axios.post(
+        'http://localhost:3000/api/forgot-password',
+        { email }
+      );
+      setMessage(response.data.message);
       setError('');
     } catch (err) {
-      setError(err.response?.data?.message || 'User not found or an error occurred.');
+
+      console.error("Error: ", err);
       setMessage('');
+      setError(err.response?.data?.message || 'An unexpected error occurred.');
     }
   };
+  
 
   return (
     <div style={divStyle}>

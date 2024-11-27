@@ -29,22 +29,21 @@ const SignUp = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-
-
+  
     if (!username || !email || !password) {
       setError('All fields are required.');
       return;
     }
-
-      // Password strength validation
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (!passwordRegex.test(password)) {
-    setError(
-      'Password must be 8+ characters, with at least one uppercase, one lowercase, one number, and one special character.'
-    );
-    return;
-  }
-
+  
+    // Password strength validation
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        'Password must be at least 6 characters long and include at least one letter and one number.'
+      );
+      return;
+    }
+  
     try {
       const response = await axios.post("http://localhost:3000/api/signup", {
         username,
@@ -52,11 +51,9 @@ const SignUp = () => {
         password
       });
       console.log('User signed up:', response.data);
-
-    
+  
       if (response.data.status) {
         setSuccess('Sign-up successful! Redirecting to login...');
-    
         setTimeout(() => navigate('/login'), 2000);
       } else {
         setError('Sign-up failed. Please try again.');
@@ -66,6 +63,7 @@ const SignUp = () => {
       console.error(error);
     }
   };
+  
 
   return (
     <div style={divStyle}>
@@ -95,7 +93,6 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
             />
-           
           </div>
           
           <div className='input-box'>
