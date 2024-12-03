@@ -6,7 +6,6 @@ import AuthContext from '../../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
-
   const divStyle = {
     backgroundImage: `url(${ProfileBackgroundImage})`,
     backgroundSize: 'cover',
@@ -28,13 +27,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log("Login Payload:", { email, password });
-
     try {
-      const response = await axios.post('http://localhost:3000/api/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'http://localhost:3000/api/login',
+        { email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       if (response.data.status) {
         login(response.data.token);
@@ -45,7 +47,7 @@ const Login = () => {
         setPassword('');
       }
     } catch (error) {
-      console.error(error);
+      console.error("Login error:", error.response || error);
       setErrorMessage('Incorrect Username or Password. Try again!');
       setEmail('');
       setPassword('');
@@ -61,13 +63,12 @@ const Login = () => {
           <div className='input-box1'>
             <input
               type='text'
-              name="username"
+              name="email"
               placeholder='Email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
           </div>
           <div className='input-box1'>
             <input
@@ -78,7 +79,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
           </div>
           <div className='remember-forgot1'>
             <label><input type='checkbox' /> Remember me</label>

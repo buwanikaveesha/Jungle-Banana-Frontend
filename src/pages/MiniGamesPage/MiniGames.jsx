@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import ZebraImage from '../../assets/images/cartoon-zebra.png';
 import ProfileBackgroundImage from '../../assets/images/jungle.jpg';
 import SlideMenuBar from '../../components/NavBar/NavBar';
 import './MiniGames.css';
@@ -33,6 +34,7 @@ const MiniGames = () => {
     <div style={divStyle}>
       <div>
         <SlideMenuBar />
+        <img src={ZebraImage} alt="Zebra" className="zebra-image" />
         <div className="mini-games-container">
           <h1 className="title-minigame">MINI GAMES</h1>
           <div className="games">

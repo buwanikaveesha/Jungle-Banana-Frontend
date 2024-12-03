@@ -78,7 +78,16 @@
   .start-button:hover {
     background-color: #bdc3c7;
   }
- 
+
+  .zebra-image {
+    position: absolute;
+    bottom: -25px;
+    right: -70px;
+    width: 550px;
+    height: auto;
+    z-index: 1;
+  }
+
 @media (max-width: 768px) {
   .title-minigame {
     font-size: 2rem;
