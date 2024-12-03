@@ -84,7 +84,6 @@ function MediumMode() {
   }, [showInstructions]);
 
   const startTimer = () => {
-    setTimer(30);
     clearInterval(timerInterval.current);
     timerInterval.current = setInterval(() => {
       setTimer((prevTimer) => {
@@ -97,6 +96,8 @@ function MediumMode() {
       });
     }, 1000);
   };
+  
+  
 
   const handleScoreCalculate = async (isAnswerCorrect) => {
     if (isAnswerCorrect) {
@@ -155,8 +156,13 @@ function MediumMode() {
     setCorrectRounds(0);
     setTotalRounds(0);
     setShowOverlay(false);
+    setSelectedAnswer('');
+    setNotification('');
     fetchData();
+    startTimer();
   };
+  
+  
 
   const handleQuit = () => {
     clearInterval(timerInterval.current);
@@ -186,7 +192,10 @@ function MediumMode() {
       </div>
       <br />
       <div className="answer-options">
-        <h5 className="medium-game-answer">Answer is: {solution}</h5>
+        <h5 className="medium-game-answer">
+          Answer is: <span style={{ fontSize: '8px', color: "black" }}>{solution}</span>
+        </h5>
+
         {Array.from({ length: 10 }, (_, index) => (
           <button
             key={index}

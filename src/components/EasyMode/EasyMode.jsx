@@ -97,6 +97,7 @@ const EasyMode = () => {
       });
     }, 1000);
   };
+  
 
   const handleScoreCalculate = async (isAnswerCorrect) => {
     if (isAnswerCorrect) {
@@ -134,15 +135,17 @@ const EasyMode = () => {
   };
 
   const handleRestart = () => {
-    clearInterval(timerInterval.current);
-    setTimer(60);
-    setScore(0);
-    setCorrectRounds(0);
-    setTotalRounds(0);
-    setShowOverlay(false);
-    setIsCorrect(null);
-    fetchData();
+    clearInterval(timerInterval.current); // Clear the previous timer interval
+    setTimer(60); // Reset the timer
+    setScore(0); // Reset the score
+    setCorrectRounds(0); // Reset correct rounds count
+    setTotalRounds(0); // Reset total rounds count
+    setShowOverlay(false); // Hide the overlay
+    setIsCorrect(null); // Reset the answer status
+    fetchData(); // Fetch a new question
+    startTimer(); // Restart the timer
   };
+  
 
   const handleQuit = () => {
     clearInterval(timerInterval.current);
@@ -166,7 +169,9 @@ const EasyMode = () => {
       </div>
       <br />
       <div className="answer-options">
-        <h5 className="easy-game-answer">Answer is: {solution}</h5>
+      <h5 className="medium-game-answer">
+          Answer is: <span style={{ fontSize: '8px', color: "black" }}>{solution}</span>
+        </h5>
         {Array.from({ length: 10 }, (_, index) => (
           <button
             key={index}
