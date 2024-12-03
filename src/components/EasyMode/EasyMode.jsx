@@ -135,15 +135,15 @@ const EasyMode = () => {
   };
 
   const handleRestart = () => {
-    clearInterval(timerInterval.current); // Clear the previous timer interval
-    setTimer(60); // Reset the timer
-    setScore(0); // Reset the score
-    setCorrectRounds(0); // Reset correct rounds count
-    setTotalRounds(0); // Reset total rounds count
-    setShowOverlay(false); // Hide the overlay
-    setIsCorrect(null); // Reset the answer status
-    fetchData(); // Fetch a new question
-    startTimer(); // Restart the timer
+    clearInterval(timerInterval.current);
+    setTimer(60);
+    setScore(0);
+    setCorrectRounds(0);
+    setTotalRounds(0);
+    setShowOverlay(false);
+    setIsCorrect(null);
+    fetchData();
+    startTimer();
   };
   
 
