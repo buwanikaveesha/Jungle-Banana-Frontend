@@ -193,7 +193,7 @@ function MediumMode() {
       <br />
       <div className="answer-options">
         <h5 className="medium-game-answer">
-          Answer is: <span style={{ fontSize: '8px', color: "black" }}>{solution}</span>
+          Answer is:
         </h5>
 
         {Array.from({ length: 10 }, (_, index) => (
